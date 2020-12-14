@@ -8,7 +8,7 @@ export default function CreateList({ auth }) {
     const [items, setItems] = useState([])
     const statuses = ['complete', 'inprogress']
     const getItems = () => {
-        axios.get('', {
+        axios.('', {
             auth: auth
         })
             .then(response => {
