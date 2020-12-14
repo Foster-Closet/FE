@@ -85,7 +85,7 @@ const Register = ({ auth, onRegister }) => {
           />
         </div>
         <div>
-          <button className='submitButton' type='submit'>
+          <button className='submitRegisterButton' type='submit'>
             Sign Up
           </button>
         </div>
