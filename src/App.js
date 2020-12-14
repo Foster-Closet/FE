@@ -2,6 +2,7 @@ import './App.css'
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
 import CreateList from './components/CreateList'
 import Register from './components/Register'
+import Login from './components/Login'
 import { useLocalStorage } from './hooks'
 
 const App = () => {
@@ -25,6 +26,10 @@ const App = () => {
 
           <Route exact path='/signup'>
             <Register auth={auth} onRegister={setAuth} />
+          </Route>
+
+          <Route exact path='/login'>
+            <Login auth={auth} onLogin={setAuth} />
           </Route>
         </Switch>
       </div>
