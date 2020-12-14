@@ -36,7 +36,60 @@ const Register = ({ auth, onRegister }) => {
 
   return (
     <div className='Register'>
-      <div></div>
+      <h1>
+        Sign Up or <Link to='/login'>Login</Link>
+      </h1>
+      <form onSubmit={handleSubmit}>
+        <div>
+          <label htmlFor='name'>Name</label>
+          <input
+            type='text'
+            id='name'
+            value={name}
+            onChange={(event) => setName(event.target.value)}
+          />
+          <label htmlFor='email'>Email</label>
+          <input
+            type='email'
+            id='email'
+            value={email}
+            onChange={(event) => setEmail(event.target.value)}
+          />
+          <label htmlFor='phoneNumber'>Phone Number</label>
+          <input
+            type='tel'
+            id='phoneNumber'
+            value={phoneNumber}
+            onChange={(event) => setPhoneNumber(event.target.value)}
+          />
+          <label htmlFor='zipcode'>Zipcode</label>
+          <input
+            type='number'
+            id='zipcode'
+            value={zipcode}
+            onChange={(event) => setZipcode(event.target.value)}
+          />
+          <label htmlFor='username'>Username</label>
+          <input
+            type='text'
+            id='username'
+            value={username}
+            onChange={(event) => setUsername(event.target.value)}
+          />
+          <label htmlFor='password'>Password</label>
+          <input
+            type='password'
+            id='password'
+            value={password}
+            onChange={(event) => setPassword(event.target.value)}
+          />
+        </div>
+        <div>
+          <button className='submitButton' type='submit'>
+            Sign Up
+          </button>
+        </div>
+      </form>
     </div>
   )
 }
