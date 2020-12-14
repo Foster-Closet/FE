@@ -1,14 +1,6 @@
-
 import './App.css'
+import Register from './components/Register'
 
-const App = () => {
-  return (
-    <div>
-      <header>Foster Closet</header>
-    </div>
-  )
-}
+const App = () => {}
 
 export default App
-
-export default App;
