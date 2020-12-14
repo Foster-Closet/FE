@@ -1,25 +1,36 @@
-import logo from './logo.svg';
+
 import './App.css';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import CreateList from './CreateList'
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+  //Does this need Local Storage?
+  const [auth, setAuth] = useLocalStorage('', null)
 
+  return (
+    <Router>
+      <div className="App">
+        {auth && (
+          <div>
+            <span>Logged in as {auth.username}</span> | <button onClick={() => setAuth(null)}>Log Out</button>
+          </div>
+        )}
+
+        <Switch>
+          <Route path='/createlist'>
+            <CreateList auth={auth} />
+          </Route>
+
+
+
+
+
+
+        </Switch>
+      </div>
+    </Router>
+
+
+  )
+}
 export default App;
