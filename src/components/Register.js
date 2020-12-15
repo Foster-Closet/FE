@@ -25,9 +25,6 @@ const Register = ({ auth, onRegister }) => {
       .then((response) => {
         onRegister({ username, password, name, zipcode, email, phoneNumber })
       })
-      // .then(() => {
-      //   return <Redirect to='/FosterFamilyAuth' />
-      // })
       .catch((error) => {
         console.log(error)
       })
