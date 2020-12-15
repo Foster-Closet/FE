@@ -9,9 +9,17 @@ import FFDashboard from './components/FFDashboard'
 import DonorDashboard from './components/DonorDashboard'
 import LandingPage from './components/LandingPage'
 import { useLocalStorage } from './hooks'
+import Navbar from './components/Navbar'
+import 'bulma/css/bulma.css'
 
+const styles = {
+  fontFamily: 'sans-serif',
+  textAlign: 'center'
+}
+
+const pages = ['Give Stuff', 'Get Stuff', 'My Dashboard', 'Profile']
 const App = () => {
-  //Does this need Local Storage?
+  // Does this need Local Storage?
   const [auth, setAuth] = useLocalStorage('', null)
 
   return (
@@ -21,7 +29,11 @@ const App = () => {
           <div>
             <span>Logged in as {auth.username}</span> |{' '}
             <button onClick={() => setAuth(null)}>Log Out</button>
+            <div style={styles}>
+              <Navbar pages={pages} />
+            </div>
           </div>
+
         )}
 
         <Switch>
