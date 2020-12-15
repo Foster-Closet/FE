@@ -1,7 +1,7 @@
 
 import './App.css';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
-import CreateList from './CreateList'
+import CreateRequest from './CreateRequest'
 
 function App() {
   //Does this need Local Storage?
@@ -18,7 +18,7 @@ function App() {
 
         <Switch>
           <Route path='/createlist'>
-            <CreateList auth={auth} />
+            <CreateRequest auth={auth} />
           </Route>
 
 
