@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
 import CreateRequest from './components/CreateRequest'
 import Register from './components/Register'
 import Login from './components/Login'
+import FFDashboard from './components/FFDashBoard'
 import { useLocalStorage } from './hooks'
 
 const App = () => {
@@ -20,7 +21,11 @@ const App = () => {
         )}
 
         <Switch>
-          <Route path='/createrequest'>
+          <Route exact path='/foster-family-dashboard'>
+            <FFDashboard auth={auth} />
+          </Route>
+
+          <Route path='/create-request'>
             <CreateRequest auth={auth} />
           </Route>
 
