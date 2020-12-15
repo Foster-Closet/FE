@@ -21,7 +21,7 @@ const App = () => {
 
         <Switch>
           <Route path='/createlist'>
-            <CreateList auth={auth} />
+            <CreateRequest auth={auth} />
           </Route>
 
           <Route exact path='/signup'>

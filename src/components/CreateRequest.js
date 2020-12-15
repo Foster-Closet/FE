@@ -3,12 +3,12 @@ import axios from 'axios'
 import { Link, Redirect } from "react-router-dom"
 
 
-export default function CreateList({ auth }) {
+export default function CreateRequest({ auth }) {
     const [listName, setListName] = useState([])
     const [items, setItems] = useState([])
     const statuses = ['complete', 'inprogress']
-    const getItems = () => {
-        axios.('', {
+    const Items = () => {
+        axios.getItems('', {
             auth: auth
         })
             .then(response => {
