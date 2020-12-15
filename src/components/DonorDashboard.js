@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import { Redirect, Link } from 'react-router-dom'
 
-const FFDashboard = ({ auth }) => {
+const DonorDashboard = ({ auth }) => {
   const [requestList, setRequestList] = useState([])
 
   useEffect(() => {
@@ -16,7 +16,7 @@ const FFDashboard = ({ auth }) => {
   }, [auth])
 
   if (!auth) {
-    return <Redirect to='/foster-family-login' />
+    return <Redirect to='/donor-login' />
   }
 
   return (
@@ -27,4 +27,4 @@ const FFDashboard = ({ auth }) => {
   )
 }
 
-export default FFDashboard
+export default DonorDashboard

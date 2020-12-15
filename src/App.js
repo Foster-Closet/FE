@@ -1,9 +1,13 @@
 import './App.css'
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import CreateRequest from './components/CreateRequest'
-import Register from './components/Register'
-import Login from './components/Login'
-import FFDashboard from './components/FFDashBoard'
+import FFRegister from './components/FFRegister'
+import FFLogin from './components/FFLogin'
+import DonorRegister from './components/DonorRegister'
+import DonorLogin from './components/DonorLogin'
+import FFDashboard from './components/FFDashboard'
+import DonorDashboard from './components/DonorDashboard'
+import LandingPage from './components/LandingPage'
 import { useLocalStorage } from './hooks'
 
 const App = () => {
@@ -21,20 +25,36 @@ const App = () => {
         )}
 
         <Switch>
-          <Route exact path='/foster-family-dashboard'>
+          <Route path='/foster-family-dashboard'>
             <FFDashboard auth={auth} />
+          </Route>
+
+          <Route path='/donor-dashboard'>
+            <DonorDashboard auth={auth} />
           </Route>
 
           <Route path='/create-request'>
             <CreateRequest auth={auth} />
           </Route>
 
-          <Route exact path='/signup'>
-            <Register auth={auth} onRegister={setAuth} />
+          <Route path='/foster-family-signup'>
+            <FFRegister auth={auth} onRegister={setAuth} />
           </Route>
 
-          <Route exact path='/login'>
-            <Login auth={auth} onLogin={setAuth} />
+          <Route path='/foster-family-login'>
+            <FFLogin auth={auth} onLogin={setAuth} />
+          </Route>
+
+          <Route path='/donor-signup'>
+            <DonorRegister auth={auth} onRegister={setAuth} />
+          </Route>
+
+          <Route path='/donor-login'>
+            <DonorLogin auth={auth} onLogin={setAuth} />
+          </Route>
+
+          <Route exact path='/'>
+            <LandingPage />
           </Route>
         </Switch>
       </div>
