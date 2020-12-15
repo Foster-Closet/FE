@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import axios from 'axios'
 import { Link, Redirect } from 'react-router-dom'
 
-const Login = ({ auth, onLogin }) => {
+const FFLogin = ({ auth, onLogin }) => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
 
@@ -10,7 +10,7 @@ const Login = ({ auth, onLogin }) => {
     event.preventDefault()
 
     axios
-      .get('', {
+      .get('https://foster-closet.herokuapp.com/api/user', {
         auth: { username: username, password: password }
       })
       .then((response) => {
@@ -22,15 +22,15 @@ const Login = ({ auth, onLogin }) => {
   }
 
   if (auth) {
-    return <Redirect to='/' />
+    return <Redirect to='/foster-family-dashboard' />
   }
 
   return (
     <div className='Login'>
       <center>
-        <h1>
-          Log In or <Link to='/signup'>Sign Up</Link>
-        </h1>
+        <h3>
+          Log In or <Link to='/foster-family-signup'>Register</Link>
+        </h3>
         <form onSubmit={handleSubmit}>
           <div>
             <label htmlFor='username'>Username</label>
@@ -63,4 +63,4 @@ const Login = ({ auth, onLogin }) => {
   )
 }
 
-export default Login
+export default FFLogin
