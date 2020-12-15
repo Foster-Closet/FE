@@ -29,7 +29,7 @@ const DonorLogin = ({ auth, onLogin }) => {
     <div className='Login'>
       <center>
         <h3>
-          Login or <Link to='/donor-register'>Register</Link>
+          Login or <Link to='/donor-signup'>Register</Link>
         </h3>
         <form onSubmit={handleSubmit}>
           <div>

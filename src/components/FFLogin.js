@@ -29,7 +29,7 @@ const FFLogin = ({ auth, onLogin }) => {
     <div className='Login'>
       <center>
         <h3>
-          Log In or <Link to='/foster-family-register'>Register</Link>
+          Log In or <Link to='/foster-family-signup'>Register</Link>
         </h3>
         <form onSubmit={handleSubmit}>
           <div>
