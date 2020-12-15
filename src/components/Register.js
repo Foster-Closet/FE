@@ -14,7 +14,7 @@ const Register = ({ auth, onRegister }) => {
     event.preventDefault()
 
     axios
-      .post('', {
+      .post('https://foster-closet.herokuapp.com/api/user', {
         username: username,
         password: password,
         name: name,

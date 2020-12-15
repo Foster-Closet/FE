@@ -10,7 +10,7 @@ const Login = ({ auth, onLogin }) => {
     event.preventDefault()
 
     axios
-      .get('', {
+      .get('https://foster-closet.herokuapp.com/api/user', {
         auth: { username: username, password: password }
       })
       .then((response) => {
