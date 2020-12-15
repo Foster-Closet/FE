@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import axios from 'axios'
 import { Link, Redirect } from 'react-router-dom'
 
-const Register = ({ auth, onRegister }) => {
+const DonorRegister = ({ auth, onRegister }) => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [name, setName] = useState('')
@@ -31,14 +31,14 @@ const Register = ({ auth, onRegister }) => {
   }
 
   if (auth) {
-    return <Redirect to='/' />
+    return <Redirect to='/donor-dashboard' />
   }
 
   return (
     <div className='Register'>
-      <h1>
-        Sign Up or <Link to='/login'>Login</Link>
-      </h1>
+      <h3>
+        Sign up or <Link to='/foster-family-login'>Login</Link>
+      </h3>
       <form onSubmit={handleSubmit}>
         <div>
           <label htmlFor='name'>Name</label>
@@ -94,4 +94,4 @@ const Register = ({ auth, onRegister }) => {
   )
 }
 
-export default Register
+export default DonorRegister

@@ -16,7 +16,7 @@ const DonorDashboard = ({ auth }) => {
   }, [auth])
 
   if (!auth) {
-    return <Redirect to='/login' />
+    return <Redirect to='/donor-login' />
   }
 
   return (

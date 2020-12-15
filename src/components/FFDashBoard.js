@@ -16,7 +16,7 @@ const FFDashboard = ({ auth }) => {
   }, [auth])
 
   if (!auth) {
-    return <Redirect to='/login' />
+    return <Redirect to='/foster-family-login' />
   }
 
   return (
