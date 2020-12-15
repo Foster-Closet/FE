@@ -1,6 +1,6 @@
 import './App.css'
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
-import CreateList from './components/CreateList'
+import CreateRequest from './components/CreateRequest'
 import Register from './components/Register'
 import Login from './components/Login'
 import { useLocalStorage } from './hooks'
@@ -20,7 +20,7 @@ const App = () => {
         )}
 
         <Switch>
-          <Route path='/createlist'>
+          <Route path='/createrequest'>
             <CreateRequest auth={auth} />
           </Route>
 
