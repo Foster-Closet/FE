@@ -33,35 +33,34 @@ const App = () => {
               <Navbar pages={pages} />
             </div>
           </div>
-
         )}
 
         <Switch>
-          <Route path='/foster-family-dashboard'>
+          <Route exact path='/foster-family-dashboard'>
             <FFDashboard auth={auth} />
           </Route>
 
-          <Route path='/donor-dashboard'>
+          <Route exact path='/donor-dashboard'>
             <DonorDashboard auth={auth} />
           </Route>
 
-          <Route path='/create-request'>
+          <Route exact path='/create-request'>
             <CreateRequest auth={auth} />
           </Route>
 
-          <Route path='/foster-family-signup'>
+          <Route exact path='/foster-family-signup'>
             <FFRegister auth={auth} onRegister={setAuth} />
           </Route>
 
-          <Route path='/foster-family-login'>
+          <Route exact path='/foster-family-login'>
             <FFLogin auth={auth} onLogin={setAuth} />
           </Route>
 
-          <Route path='/donor-signup'>
+          <Route exact path='/donor-signup'>
             <DonorRegister auth={auth} onRegister={setAuth} />
           </Route>
 
-          <Route path='/donor-login'>
+          <Route exact path='/donor-login'>
             <DonorLogin auth={auth} onLogin={setAuth} />
           </Route>
 

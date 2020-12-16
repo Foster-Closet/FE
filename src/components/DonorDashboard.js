@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
-import { Redirect, Link } from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 
 const DonorDashboard = ({ auth }) => {
   const [requestList, setRequestList] = useState([])
@@ -20,7 +20,7 @@ const DonorDashboard = ({ auth }) => {
   }
 
   return (
-    <div className='FFDashboard'>
+    <div className='DonorDashboard'>
       <h1>Welcome to your Virtual Foster Closet!</h1>
       <h2>Helping our community</h2>
     </div>
