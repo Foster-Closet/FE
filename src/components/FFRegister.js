@@ -45,6 +45,7 @@ const FFRegister = ({ auth, onRegister }) => {
           <input
             type='text'
             id='name'
+            required
             value={name}
             onChange={(event) => setName(event.target.value)}
           />
@@ -52,6 +53,7 @@ const FFRegister = ({ auth, onRegister }) => {
           <input
             type='email'
             id='email'
+            required
             value={email}
             onChange={(event) => setEmail(event.target.value)}
           />
@@ -66,6 +68,7 @@ const FFRegister = ({ auth, onRegister }) => {
           <input
             type='number'
             id='zipcode'
+            required
             value={zipcode}
             onChange={(event) => setZipcode(event.target.value)}
           />
@@ -73,6 +76,7 @@ const FFRegister = ({ auth, onRegister }) => {
           <input
             type='text'
             id='username'
+            required
             value={username}
             onChange={(event) => setUsername(event.target.value)}
           />
@@ -80,6 +84,7 @@ const FFRegister = ({ auth, onRegister }) => {
           <input
             type='password'
             id='password'
+            required
             value={password}
             onChange={(event) => setPassword(event.target.value)}
           />
