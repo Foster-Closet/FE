@@ -11,7 +11,10 @@ const DonorLogin = ({ auth, onLogin }) => {
 
     axios
       .get('https://foster-closet.herokuapp.com/api/user', {
-        auth: { username: username, password: password }
+        auth: {
+          username: username,
+          password: password
+        }
       })
       .then((response) => {
         onLogin({ username, password })

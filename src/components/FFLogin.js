@@ -11,7 +11,7 @@ const FFLogin = ({ auth, onLogin }) => {
 
     axios
       .get('https://foster-closet.herokuapp.com/api/user', {
-        auth: { username: username, password: password }
+        headers: { Authorization: 'Token ' }
       })
       .then((response) => {
         onLogin({ username, password })
