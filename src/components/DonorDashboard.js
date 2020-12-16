@@ -20,10 +20,12 @@ const DonorDashboard = ({ auth }) => {
   }
 
   return (
-    <div className='FFDashboard'>
+
+    <div className='DonorDashboard'>
       <h1>Welcome to your Virtual Foster Closet!</h1>
       <h2>Helping our community</h2>
     </div>
+
   )
 }
 
