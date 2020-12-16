@@ -7,7 +7,7 @@ const FFDashboard = ({ auth }) => {
 
   useEffect(() => {
     axios
-      .get('', {
+      .get(`https://foster-closet.herokuapp.com/api/item/${id}`, {
         auth: auth
       })
       .then((response) => {
