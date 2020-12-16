@@ -17,6 +17,7 @@ const styles = {
   textAlign: 'center'
 }
 const pages = ['Notifications', 'Messages', 'My Dashboard', 'Profile']
+
 const App = () => {
   // Does this need Local Storage?
   const [auth, setAuth] = useLocalStorage('', null)
