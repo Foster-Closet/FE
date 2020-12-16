@@ -8,33 +8,31 @@ import DonorLogin from './components/DonorLogin'
 import FFDashboard from './components/FFDashboard'
 import DonorDashboard from './components/DonorDashboard'
 import LandingPage from './components/LandingPage'
-import { useLocalStorage } from './hooks'
 import Navbar from './components/Navbar'
+import { useLocalStorage } from './hooks'
 import 'bulma/css/bulma.css'
 
 const styles = {
   fontFamily: 'sans-serif',
   textAlign: 'center'
 }
-
-const pages = ['Give Stuff', 'Get Stuff', 'My Dashboard', 'Profile']
+const pages = ['Notifications', 'Messages', 'My Dashboard', 'Profile']
 const App = () => {
   // Does this need Local Storage?
   const [auth, setAuth] = useLocalStorage('', null)
 
   return (
-    <Router>
-      <div className='App'>
-        {auth && (
-          <div>
-            <span>Logged in as {auth.username}</span> |{' '}
-            <button onClick={() => setAuth(null)}>Log Out</button>
-            <div style={styles}>
-              <Navbar pages={pages} />
-            </div>
+    <div className='App'>
+      {auth && (
+        <div>
+          <span>Logged in as {auth.username}</span> |{' '}
+          <button onClick={() => setAuth(null)}>Log Out</button>
+          <div style={styles}>
+            <Navbar pages={pages} />
           </div>
-
-        )}
+        </div>
+      )}
+      <Router>
 
         <Switch>
           <Route path='/foster-family-dashboard'>
@@ -69,8 +67,9 @@ const App = () => {
             <LandingPage />
           </Route>
         </Switch>
-      </div>
-    </Router>
+
+      </Router>
+    </div>
   )
 }
 export default App
