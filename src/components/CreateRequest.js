@@ -3,13 +3,13 @@ import axios from 'axios'
 import { Redirect } from 'react-router-dom'
 
 const CreateRequest = ({ auth }) => {
-  const [itemInList, setItemInList] = useState([])
+  const [itemInList, setItemInList] = useState('')
   const [submitted, setSubmitted] = useState(false)
 
   const handleSubmit = () => {
     axios
       .post(
-        'https://foster-closet.herokuapp.com/api/item',
+        'https://foster-closet.herokuapp.com/api/registry',
         {
           itemInList
         },

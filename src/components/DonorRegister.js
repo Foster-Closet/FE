@@ -20,7 +20,9 @@ const DonorRegister = ({ auth, onRegister }) => {
         name: name,
         zipcode: zipcode,
         email: email,
-        phoneNumber: phoneNumber
+        phoneNumber: phoneNumber,
+        is_foster: false,
+        is_donor: true
       })
       .then((response) => {
         onRegister({ username, password, name, zipcode, email, phoneNumber })

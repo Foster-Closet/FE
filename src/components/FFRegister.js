@@ -20,7 +20,9 @@ const FFRegister = ({ auth, onRegister }) => {
         name: name,
         zipcode: zipcode,
         email: email,
-        phoneNumber: phoneNumber
+        phoneNumber: phoneNumber,
+        is_foster: true,
+        is_donor: false
       })
       .then((response) => {
         onRegister({ username, password, name, zipcode, email, phoneNumber })

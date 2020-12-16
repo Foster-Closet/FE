@@ -19,7 +19,7 @@ const styles = {
 const pages = ['Notifications', 'Messages', 'My Dashboard', 'Profile']
 
 const App = () => {
-  // Does this need Local Storage?
+  // Does this need Local Storage? Yes.
   const [auth, setAuth] = useLocalStorage('', null)
 
   return (
