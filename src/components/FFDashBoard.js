@@ -7,7 +7,7 @@ const FFDashboard = ({ auth }) => {
 
   useEffect(() => {
     axios
-      .get(`https://foster-closet.herokuapp.com/api/item/${id}`, {
+      .get('https://foster-closet.herokuapp.com/api/item', {
         auth: auth
       })
       .then((response) => {
@@ -21,8 +21,14 @@ const FFDashboard = ({ auth }) => {
 
   return (
     <div className='FFDashboard'>
-      <h1>Welcome to your Virtual Foster Closet!</h1>
+      <Link to='/create-request'>Create a Request</Link>
       <h2>Helping our community</h2>
+      <a href='/create-request'>Create a Request</a>
+      {requestList.map((items) => (
+        <div key={items.id}>
+          <h4>{items.itemInList}</h4>
+        </div>
+      ))}
     </div>
   )
 }

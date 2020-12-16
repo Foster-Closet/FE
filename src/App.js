@@ -17,6 +17,7 @@ const styles = {
   textAlign: 'center'
 }
 const pages = ['Notifications', 'Messages', 'My Dashboard', 'Profile']
+
 const App = () => {
   // Does this need Local Storage?
   const [auth, setAuth] = useLocalStorage('', null)
@@ -33,33 +34,32 @@ const App = () => {
         </div>
       )}
       <Router>
-
         <Switch>
-          <Route path='/foster-family-dashboard'>
+          <Route exact path='/foster-family-dashboard'>
             <FFDashboard auth={auth} />
           </Route>
 
-          <Route path='/donor-dashboard'>
+          <Route exact path='/donor-dashboard'>
             <DonorDashboard auth={auth} />
           </Route>
 
-          <Route path='/create-request'>
+          <Route exact path='/create-request'>
             <CreateRequest auth={auth} />
           </Route>
 
-          <Route path='/foster-family-signup'>
+          <Route exact path='/foster-family-signup'>
             <FFRegister auth={auth} onRegister={setAuth} />
           </Route>
 
-          <Route path='/foster-family-login'>
+          <Route exact path='/foster-family-login'>
             <FFLogin auth={auth} onLogin={setAuth} />
           </Route>
 
-          <Route path='/donor-signup'>
+          <Route exact path='/donor-signup'>
             <DonorRegister auth={auth} onRegister={setAuth} />
           </Route>
 
-          <Route path='/donor-login'>
+          <Route exact path='/donor-login'>
             <DonorLogin auth={auth} onLogin={setAuth} />
           </Route>
 
@@ -67,7 +67,6 @@ const App = () => {
             <LandingPage />
           </Route>
         </Switch>
-
       </Router>
     </div>
   )
