@@ -1,4 +1,4 @@
-import './App.css'
+import React, { useState, useRef } from 'react'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import CreateRequest from './components/CreateRequest'
 import FFRegister from './components/FFRegister'
@@ -8,65 +8,72 @@ import DonorLogin from './components/DonorLogin'
 import FFDashboard from './components/FFDashboard'
 import DonorDashboard from './components/DonorDashboard'
 import LandingPage from './components/LandingPage'
-import Navbar from './components/Navbar'
-import { useLocalStorage } from './hooks'
-import 'bulma/css/bulma.css'
-
-const styles = {
-  fontFamily: 'sans-serif',
-  textAlign: 'center'
-}
-const pages = ['Notifications', 'Messages', 'My Dashboard', 'Profile']
+import { ThemeProvider } from 'styled-components'
+import { GlobalStyles } from './globals'
+import { theme } from './theme'
+import Burger from './components/Burger'
+import Menu from './components/Menu'
+import { useLocalStorage, useOnClickOutside } from './hooks'
 
 const App = () => {
   const [auth, setAuth] = useLocalStorage('auth_token', null)
+  const [open, setOpen] = useState(false)
+  const node = useRef()
+  useOnClickOutside(node, () => setOpen(false))
 
   return (
-    <div className='App'>
-      {auth && (
-        <div>
-          <button onClick={() => setAuth(null)}>Log Out</button>
-          <div style={styles}>
-            <Navbar pages={pages} />
-          </div>
+    <ThemeProvider theme={theme}>
+      <>
+        <GlobalStyles />
+        <div className='App'>
+          {auth && (
+            <a href='/' onClick={setAuth(null)}>
+              <span aria-label='logout' />
+              Log Out
+            </a>
+          )}
         </div>
-      )}
-      <Router>
-        <Switch>
-          <Route exact path='/foster-family-dashboard'>
-            <FFDashboard auth={auth} />
-          </Route>
+        <Router>
+          <Switch>
+            <Route exact path='/foster-family-dashboard'>
+              <FFDashboard auth={auth} />
+            </Route>
 
-          <Route exact path='/donor-dashboard'>
-            <DonorDashboard auth={auth} />
-          </Route>
+            <Route exact path='/donor-dashboard'>
+              <DonorDashboard auth={auth} />
+            </Route>
 
-          <Route exact path='/create-request'>
-            <CreateRequest auth={auth} />
-          </Route>
+            <Route exact path='/create-request'>
+              <CreateRequest auth={auth} />
+            </Route>
 
-          <Route exact path='/foster-family-signup'>
-            <FFRegister auth={auth} onRegister={setAuth} />
-          </Route>
+            <Route exact path='/foster-family-signup'>
+              <FFRegister auth={auth} onRegister={setAuth} />
+            </Route>
 
-          <Route exact path='/foster-family-login'>
-            <FFLogin auth={auth} onLogin={setAuth} />
-          </Route>
+            <Route exact path='/foster-family-login'>
+              <FFLogin auth={auth} onLogin={setAuth} />
+            </Route>
 
-          <Route exact path='/donor-signup'>
-            <DonorRegister auth={auth} onRegister={setAuth} />
-          </Route>
+            <Route exact path='/donor-signup'>
+              <DonorRegister auth={auth} onRegister={setAuth} />
+            </Route>
 
-          <Route exact path='/donor-login'>
-            <DonorLogin auth={auth} onLogin={setAuth} />
-          </Route>
+            <Route exact path='/donor-login'>
+              <DonorLogin auth={auth} onLogin={setAuth} />
+            </Route>
 
-          <Route exact path='/'>
-            <LandingPage />
-          </Route>
-        </Switch>
-      </Router>
-    </div>
+            <Route exact path='/'>
+              <LandingPage />
+            </Route>
+          </Switch>
+        </Router>
+        <div ref={node}>
+          <Burger open={open} setOpen={setOpen} />
+          <Menu open={open} setOpen={setOpen} />
+        </div>
+      </>
+    </ThemeProvider>
   )
 }
 export default App
