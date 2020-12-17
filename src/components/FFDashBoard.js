@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
-import { Redirect, Link } from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 
 const FFDashboard = ({ auth }) => {
   const [requestList, setRequestList] = useState([])
@@ -21,8 +21,7 @@ const FFDashboard = ({ auth }) => {
 
   return (
     <div className='FFDashboard'>
-      <Link to='/create-request'>Create a Request</Link>
-      <h2>Helping our community</h2>
+      <h1>Helping our community</h1>
       <a href='/create-request'>Create a Request</a>
       {requestList.map((items) => (
         <div key={items.id}>

@@ -10,11 +10,12 @@ const FFLogin = ({ auth, onLogin }) => {
     event.preventDefault()
 
     axios
-      .get('https://foster-closet.herokuapp.com/api/user', {
-        headers: { Authorization: 'Token ' }
+      .post('https://foster-closet.herokuapp.com/auth/token/login/', {
+        username,
+        password
       })
       .then((response) => {
-        onLogin({ username, password })
+        onLogin(response.data.auth_token)
       })
       .catch((error) => {
         console.log(error)

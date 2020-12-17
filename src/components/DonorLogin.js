@@ -10,14 +10,14 @@ const DonorLogin = ({ auth, onLogin }) => {
     event.preventDefault()
 
     axios
-      .get('https://foster-closet.herokuapp.com/api/user', {
+      .get('https://foster-closet.herokuapp.com/auth/token/login/', {
         auth: {
-          username: username,
-          password: password
+          username,
+          password
         }
       })
       .then((response) => {
-        onLogin({ username, password })
+        onLogin(response.data.auth_token)
       })
       .catch((error) => {
         console.log(error)

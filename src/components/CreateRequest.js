@@ -9,11 +9,13 @@ const CreateRequest = ({ auth }) => {
   const handleSubmit = () => {
     axios
       .post(
-        'https://foster-closet.herokuapp.com/api/registry',
+        'https://foster-closet.herokuapp.com/api/registry/',
         {
           itemInList
         },
-        { auth }
+        {
+          headers: { Authorization: `Token ${auth}` }
+        }
       )
       .then((response) => {
         setSubmitted(true)
@@ -32,7 +34,7 @@ const CreateRequest = ({ auth }) => {
           type='radio'
           id='itemName'
           name='stroller'
-          value={itemInList}
+          value='stroller'
           onChange={(e) => {
             setItemInList(e.target.value)
           }}

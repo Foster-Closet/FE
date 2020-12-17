@@ -14,7 +14,7 @@ const DonorRegister = ({ auth, onRegister }) => {
     event.preventDefault()
 
     axios
-      .post('https://foster-closet.herokuapp.com/api/user', {
+      .post('https://foster-closet.herokuapp.com/auth/users/', {
         username: username,
         password: password,
         name: name,
