@@ -19,13 +19,12 @@ const styles = {
 const pages = ['Notifications', 'Messages', 'My Dashboard', 'Profile']
 
 const App = () => {
-  const [auth, setAuth] = useLocalStorage('', null)
+  const [auth, setAuth] = useLocalStorage('auth_token', null)
 
   return (
     <div className='App'>
       {auth && (
         <div>
-          <span>Logged in as {auth.username}</span> |{' '}
           <button onClick={() => setAuth(null)}>Log Out</button>
           <div style={styles}>
             <Navbar pages={pages} />
