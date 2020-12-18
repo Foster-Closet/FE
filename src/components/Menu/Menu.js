@@ -2,7 +2,9 @@ import React from 'react'
 import { bool } from 'prop-types'
 import { StyledMenu } from './Menu.styled'
 
-const Menu = ({ open, auth, setAuth }) => {
+// create a "checked" function that checks to see whether you are logged in as a FF or as a Donor to display the correct dashboard when clicked
+
+const Menu = ({ open }) => {
   return (
     <StyledMenu open={open}>
       <a href='/foster-family-dashboard'>

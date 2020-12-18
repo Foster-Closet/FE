@@ -26,54 +26,48 @@ const App = () => {
       <>
         <GlobalStyles />
         <div className='App'>
-          {auth && (
-            <a href='/' onClick={setAuth(null)}>
-              <span aria-label='logout' />
-              Log Out
-            </a>
-          )}
-        </div>
-        <Router>
-          <Switch>
-            <Route exact path='/foster-family-dashboard'>
-              <FFDashboard auth={auth} />
-            </Route>
+          <Router>
+            <Switch>
+              <Route path='/foster-family-signup'>
+                <FFRegister auth={auth} onRegister={setAuth} />
+              </Route>
 
-            <Route exact path='/donor-dashboard'>
-              <DonorDashboard auth={auth} />
-            </Route>
+              <Route path='/foster-family-login'>
+                <FFLogin auth={auth} onLogin={setAuth} />
+              </Route>
 
-            <Route exact path='/create-request'>
-              <CreateRequest auth={auth} />
-            </Route>
+              <Route path='/donor-signup'>
+                <DonorRegister auth={auth} onRegister={setAuth} />
+              </Route>
 
-            <Route exact path='/foster-family-signup'>
-              <FFRegister auth={auth} onRegister={setAuth} />
-            </Route>
+              <Route path='/donor-login'>
+                <DonorLogin auth={auth} onLogin={setAuth} />
+              </Route>
+              <Route path='/foster-family-dashboard'>
+                <FFDashboard auth={auth} />
+              </Route>
 
-            <Route exact path='/foster-family-login'>
-              <FFLogin auth={auth} onLogin={setAuth} />
-            </Route>
+              <Route path='/donor-dashboard'>
+                <DonorDashboard auth={auth} />
+              </Route>
 
-            <Route exact path='/donor-signup'>
-              <DonorRegister auth={auth} onRegister={setAuth} />
-            </Route>
+              <Route path='/create-request'>
+                <CreateRequest auth={auth} />
+              </Route>
 
-            <Route exact path='/donor-login'>
-              <DonorLogin auth={auth} onLogin={setAuth} />
-            </Route>
-
-            <Route exact path='/'>
-              <LandingPage />
-            </Route>
-          </Switch>
-        </Router>
-        <div ref={node}>
-          <Burger open={open} setOpen={setOpen} />
-          <Menu open={open} setOpen={setOpen} />
+              <Route exact path='/'>
+                <LandingPage />
+              </Route>
+            </Switch>
+          </Router>
+          <div ref={node}>
+            <Burger open={open} setOpen={setOpen} />
+            <Menu open={open} setOpen={setOpen} />
+          </div>
         </div>
       </>
     </ThemeProvider>
   )
 }
+
 export default App
