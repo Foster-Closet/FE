@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 // https://usehooks.com/useLocalStorage/
 
@@ -36,4 +36,19 @@ export const useLocalStorage = (key, initialValue) => {
   }
 
   return [storedValue, setValue]
+}
+
+export const useOnClickOutside = (ref, handler) => {
+  useEffect(() => {
+    const listener = (event) => {
+      if (!ref.current || ref.current.contains(event.target)) {
+        return
+      }
+      handler(event)
+    }
+    document.addEventListener('mousedown', listener)
+    return () => {
+      document.removeEventListener('mousedown', listener)
+    }
+  }, [ref, handler])
 }
