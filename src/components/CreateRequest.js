@@ -3,19 +3,15 @@ import axios from 'axios'
 import { Redirect } from 'react-router-dom'
 
 const CreateRequest = ({ auth }) => {
-  const [itemInList, setItemInList] = useState('')
+  const [itemInList, setItemInList] = useState(null)
   const [submitted, setSubmitted] = useState(false)
 
   const handleSubmit = () => {
     axios
       .post(
         'https://foster-closet.herokuapp.com/api/registry/',
-        {
-          itemInList
-        },
-        {
-          headers: { Authorization: `Token ${auth}` }
-        }
+        { items: [{ description: itemInList }] },
+        { headers: { Authorization: `Token ${auth}` } }
       )
       .then((response) => {
         setSubmitted(true)
@@ -29,18 +25,32 @@ const CreateRequest = ({ auth }) => {
   return (
     <div className='CreateRequest'>
       <h2>Create a request for you foster child here</h2>
-      <label>
-        <input
-          type='radio'
-          id='itemName'
-          name='stroller'
-          value='stroller'
-          onChange={(e) => {
-            setItemInList(e.target.value)
-          }}
-        />
-        Stroller
-      </label>
+      <div>
+        <label>
+          <input
+            type='checkbox'
+            value='stroller'
+            checked={itemInList === 'stroller'}
+            onChange={(e) => {
+              setItemInList(e.target.value)
+            }}
+          />
+          Stroller
+        </label>
+      </div>
+      <div>
+        <label>
+          <input
+            type='checkbox'
+            value='car seat'
+            checked={itemInList === 'car seat'}
+            onChange={(e) => {
+              setItemInList(e.target.value)
+            }}
+          />
+          Car Seat
+        </label>
+      </div>
       <button onClick={handleSubmit}>Submit Request</button>
     </div>
   )

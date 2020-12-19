@@ -7,7 +7,7 @@ const FFDashboard = ({ auth }) => {
 
   useEffect(() => {
     axios
-      .get('https://foster-closet.herokuapp.com/api/registry', {
+      .get('https://foster-closet.herokuapp.com/api/registry/', {
         auth: auth
       })
       .then((response) => {
@@ -23,11 +23,7 @@ const FFDashboard = ({ auth }) => {
     <div className='FFDashboard'>
       <h1>Helping our community</h1>
       <a href='/create-request'>Create a Request</a>
-      {requestList.map((items) => (
-        <div key={items.id}>
-          <h4>{items.itemInList}</h4>
-        </div>
-      ))}
+      {requestList.map((item) => console.log(item))}
     </div>
   )
 }
