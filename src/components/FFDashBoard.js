@@ -19,12 +19,33 @@ const FFDashboard = ({ auth }) => {
     return <Redirect to='/foster-family-login' />
   }
 
+
   return (
     <div className='FFDashboard'>
+      
       <h1>Helping our community</h1>
       <a href='/create-request'>Create a Request</a>
-      {requestList.map((item) => console.log(item))}
-    </div>
+      <div>
+        <h1>My Requested List</h1>
+        {
+          requestList.map((item) => 
+              <div>Item:{item.id}
+              <ul>
+                {item.items.map((sub)=>
+                <li>
+                  {sub.description}
+                </li>
+                  )}
+              </ul>
+              </div>
+          )
+        }
+        </div>
+        )
+      }
+    
+
+      </div>
   )
 }
 
