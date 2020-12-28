@@ -11,7 +11,6 @@ export const GlobalStyles = createGlobalStyle`
     box-sizing: border-box;
   }
   body {
-    align-items: center;
     background: #0D0C1D;
     color: #EFFFFA;
     display: flex;

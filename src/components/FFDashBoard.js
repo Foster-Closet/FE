@@ -27,7 +27,7 @@ const FFDashboard = ({ auth }) => {
         <h1>My Requested List</h1>
         {requestList.map((item) => (
           <div key={item.id}>
-            Item:{item.id}
+            Requested list {item.id}
             <ul>
               {item.items.map((sub) => (
                 <li key={sub.id}>{sub.description}</li>
