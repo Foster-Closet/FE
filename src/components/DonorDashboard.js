@@ -7,7 +7,7 @@ const DonorDashboard = ({ auth }) => {
 
   useEffect(() => {
     axios
-      .get('', {
+      .get('https://foster-closet.herokuapp.com/api/registry/', {
         auth: auth
       })
       .then((response) => {
@@ -21,8 +21,21 @@ const DonorDashboard = ({ auth }) => {
 
   return (
     <div className='DonorDashboard'>
-      <h1>Welcome to your Virtual Foster Closet!</h1>
+      <h1>Welcome to The Virtual Foster Closet!</h1>
       <h2>Helping our community</h2>
+      <div>
+        <h1>Requested Items</h1>
+        {requestList.map((item) => (
+          <div key={item.id}>
+            Item:{item.id}
+            <ul>
+              {item.items.map((sub) => (
+                <li key={sub.id}>{sub.description}</li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
     </div>
   )
 }
