@@ -1,16 +1,17 @@
 import React, { useState } from 'react'
 import axios from 'axios'
 import { Redirect } from 'react-router-dom'
-import TransferList from './TravelEquipment'
+import TravelEquipmentDropdown from './TravelEquipment'
+import FeedingEquipmentDropdown from './FeedingEquipment'
 
-const CreateRequest = ({ auth }) => {
+const CreateRequest = ({ auth, items }) => {
   const [submitted, setSubmitted] = useState(false)
 
   const handleSubmit = () => {
     axios
       .post(
         'https://foster-closet.herokuapp.com/api/registry/',
-        { items: [{ description: TransferList }] },
+        { items: [{ description: TravelEquipmentDropdown.selection }] },
         { headers: { Authorization: `Token ${auth}` } }
       )
       .then((response) => {
@@ -26,7 +27,16 @@ const CreateRequest = ({ auth }) => {
     <div className='CreateRequest'>
       <h2>Create a request for you foster child here</h2>
       <div>
-        <TransferList />
+        <TravelEquipmentDropdown
+          title='Travel Equipment'
+          items={items}
+          multiSelect
+        />
+        <FeedingEquipmentDropdown
+          title='Feeding Equipment'
+          items={items}
+          multiSelect
+        />
       </div>
       <button onClick={handleSubmit}>Submit Request</button>
     </div>

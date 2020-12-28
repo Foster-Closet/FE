@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-const TravelEquipmentDropdown = ({ multiSelect = false }) => {
+const FeedingEquipmentDropdown = ({ multiSelect = false }) => {
   const [open, setOpen] = useState(false)
   const [selection, setSelection] = useState([])
   const toggle = () => setOpen(!open)
@@ -8,11 +8,27 @@ const TravelEquipmentDropdown = ({ multiSelect = false }) => {
   const items = [
     {
       id: 1,
-      value: 'Stroller'
+      value: 'Bottle'
     },
     {
       id: 2,
-      value: 'Car Seat'
+      value: 'Bib'
+    },
+    {
+      id: 3,
+      value: 'High Chair'
+    },
+    {
+      id: 4,
+      value: 'Bottle Warmer'
+    },
+    {
+      id: 5,
+      value: 'Burp Cloths'
+    },
+    {
+      id: 6,
+      value: 'Nursing Supplies'
     }
   ]
 
@@ -49,7 +65,7 @@ const TravelEquipmentDropdown = ({ multiSelect = false }) => {
         onClick={() => toggle(!open)}
       >
         <div className='dd-header-title'>
-          <p>Travel Equipment</p>
+          <p>Feeding Equipment</p>
         </div>
         <div className='dd-header-action'>
           <p>{open ? 'Close' : 'Open'}</p>
@@ -71,4 +87,4 @@ const TravelEquipmentDropdown = ({ multiSelect = false }) => {
   )
 }
 
-export default TravelEquipmentDropdown
+export default FeedingEquipmentDropdown
