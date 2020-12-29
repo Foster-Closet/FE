@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-const YouthClothingDropdown = ({ multiSelect = false }) => {
+const YouthShoesDropdown = ({ multiSelect = false }) => {
   const [open, setOpen] = useState(false)
   const [selection, setSelection] = useState([])
   const toggle = () => setOpen(!open)
@@ -8,43 +8,59 @@ const YouthClothingDropdown = ({ multiSelect = false }) => {
   const items = [
     {
       id: 1,
-      value: 'Extra Small Shirts'
+      value: 'Socks'
+    },
+    {
+      id: 2,
+      value: '1'
+    },
+    {
+      id: 3,
+      value: '1.5'
     },
     {
       id: 4,
-      value: 'Extra Small Pants'
+      value: '2'
     },
     {
       id: 5,
-      value: 'Small Shirts'
+      value: '2.5'
+    },
+    {
+      id: 6,
+      value: '3'
+    },
+    {
+      id: 7,
+      value: '3.5'
     },
     {
       id: 8,
-      value: 'Small Pants'
+      value: '4'
+    },
+    {
+      id: 9,
+      value: '4.5'
     },
     {
       id: 10,
-      value: 'Medium Shirts'
+      value: '5'
+    },
+    {
+      id: 11,
+      value: '5.5'
+    },
+    {
+      id: 12,
+      value: '6'
     },
     {
       id: 13,
-      value: 'Medium Pants'
+      value: '6.5'
     },
     {
       id: 14,
-      value: 'Large Shirts'
-    },
-    {
-      id: 17,
-      value: 'Large Pants'
-    },
-    {
-      id: 18,
-      value: 'Extra Large Shirts'
-    },
-    {
-      id: 21,
-      value: 'Extra Large Pants'
+      value: '7'
     }
   ]
 
@@ -81,7 +97,7 @@ const YouthClothingDropdown = ({ multiSelect = false }) => {
         onClick={() => toggle(!open)}
       >
         <div className='dd-header-title'>
-          <p>Youth Clothing (6-12 Years Old)</p>
+          <p>Youth Shoes (6-12 Years Old)</p>
         </div>
         <div className='dd-header-action'>
           <p>{open ? 'Close' : 'Open'}</p>
@@ -103,4 +119,4 @@ const YouthClothingDropdown = ({ multiSelect = false }) => {
   )
 }
 
-export default YouthClothingDropdown
+export default YouthShoesDropdown
