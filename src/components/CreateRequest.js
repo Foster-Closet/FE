@@ -9,7 +9,9 @@ import DiapersDropdown from './Diapers'
 import NewbornClothingDropdown from './NewbornClothing'
 import ToddlerClothingDropdown from './ToddlerClothing'
 import YouthClothingDropdown from './YouthClothing'
+import YouthShoesDropdown from './YouthShoes'
 import TeenageClothingDropdown from './TeenageClothing'
+import TeenageShoesDropdown from './TeenageShoes'
 
 const CreateRequest = ({ auth, items }) => {
   const [submitted, setSubmitted] = useState(false)
@@ -29,7 +31,9 @@ const CreateRequest = ({ auth, items }) => {
               NewbornClothingDropdown,
               ToddlerClothingDropdown,
               YouthClothingDropdown,
-              TeenageClothingDropdown
+              TeenageClothingDropdown,
+              YouthShoesDropdown,
+              TeenageShoesDropdown
             }
           ]
         },
@@ -80,11 +84,13 @@ const CreateRequest = ({ auth, items }) => {
           items={items}
           multiSelect
         />
+        <YouthShoesDropdown title='Youth Shoes' items={items} multiSelect />
         <TeenageClothingDropdown
           title='Teenage Clothing'
           items={items}
           multiSelect
         />
+        <TeenageShoesDropdown title='Teenage Shoes' items={items} multiSelect />
       </div>
       <button onClick={handleSubmit}>Submit Request</button>
     </div>
