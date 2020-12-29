@@ -3,6 +3,13 @@ import axios from 'axios'
 import { Redirect } from 'react-router-dom'
 import TravelEquipmentDropdown from './TravelEquipment'
 import FeedingEquipmentDropdown from './FeedingEquipment'
+import BedroomBathroomDropdown from './BedroomBathroom'
+import ToysDropdown from './Toys'
+import DiapersDropdown from './Diapers'
+import NewbornClothingDropdown from './NewbornClothing'
+import ToddlerClothingDropdown from './ToddlerClothing'
+import YouthClothingDropdown from './YouthClothing'
+import TeenageClothingDropdown from './TeenageClothing'
 
 const CreateRequest = ({ auth, items }) => {
   const [submitted, setSubmitted] = useState(false)
@@ -11,7 +18,21 @@ const CreateRequest = ({ auth, items }) => {
     axios
       .post(
         'https://foster-closet.herokuapp.com/api/registry/',
-        { items: [{ description: TravelEquipmentDropdown.selection }] },
+        {
+          items: [
+            {
+              description: TravelEquipmentDropdown,
+              FeedingEquipmentDropdown,
+              BedroomBathroomDropdown,
+              ToysDropdown,
+              DiapersDropdown,
+              NewbornClothingDropdown,
+              ToddlerClothingDropdown,
+              YouthClothingDropdown,
+              TeenageClothingDropdown
+            }
+          ]
+        },
         { headers: { Authorization: `Token ${auth}` } }
       )
       .then((response) => {
@@ -34,6 +55,33 @@ const CreateRequest = ({ auth, items }) => {
         />
         <FeedingEquipmentDropdown
           title='Feeding Equipment'
+          items={items}
+          multiSelect
+        />
+        <BedroomBathroomDropdown
+          title='Bedroom/Bathroom'
+          items={items}
+          multiSelect
+        />
+        <ToysDropdown title='Toys/Entertainment' items={items} multiSelect />
+        <DiapersDropdown title='Diapers/Changing' items={items} multiSelect />
+        <NewbornClothingDropdown
+          title='Newborn Clothing'
+          items={items}
+          multiSelect
+        />
+        <ToddlerClothingDropdown
+          title='Toddler Clothing'
+          items={items}
+          multiSelect
+        />
+        <YouthClothingDropdown
+          title='Youth Clothing'
+          items={items}
+          multiSelect
+        />
+        <TeenageClothingDropdown
+          title='Teenage Clothing'
           items={items}
           multiSelect
         />
