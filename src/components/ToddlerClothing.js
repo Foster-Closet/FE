@@ -1,89 +1,89 @@
 import React, { useState } from 'react'
 
-const ToddlerClothingDropdown = ({ multiSelect = false }) => {
+const ToddlerClothingDropdown = ({ handleItems, multiSelect = false }) => {
   const [open, setOpen] = useState(false)
   const [selection, setSelection] = useState([])
   const toggle = () => setOpen(!open)
 
   const items = [
     {
-      id: 1,
+      id: 66,
       value: '2T Shirts'
     },
     {
-      id: 2,
+      id: 67,
       value: '2T Shoes'
     },
     {
-      id: 3,
+      id: 68,
       value: '2T Socks'
     },
     {
-      id: 4,
+      id: 69,
       value: '2T Pants'
     },
     {
-      id: 5,
+      id: 70,
       value: '2T Hats'
     },
     {
-      id: 6,
+      id: 71,
       value: '3T Shirts'
     },
     {
-      id: 7,
+      id: 72,
       value: '3T Shoes'
     },
     {
-      id: 8,
+      id: 73,
       value: '3T Socks'
     },
     {
-      id: 9,
+      id: 74,
       value: '3T Pants'
     },
     {
-      id: 10,
+      id: 75,
       value: '3T Hats'
     },
     {
-      id: 11,
+      id: 76,
       value: '4T Shirts'
     },
     {
-      id: 12,
+      id: 77,
       value: '4T Shoes'
     },
     {
-      id: 13,
+      id: 78,
       value: '4T Socks'
     },
     {
-      id: 14,
+      id: 79,
       value: '4T Pants'
     },
     {
-      id: 15,
+      id: 80,
       value: '4T Hats'
     },
     {
-      id: 16,
+      id: 81,
       value: '5T Shirts'
     },
     {
-      id: 17,
+      id: 82,
       value: '5T Shoes'
     },
     {
-      id: 18,
+      id: 83,
       value: '5T Socks'
     },
     {
-      id: 19,
+      id: 84,
       value: '5T Pants'
     },
     {
-      id: 20,
+      id: 85,
       value: '5T Hats'
     }
   ]
@@ -102,6 +102,7 @@ const ToddlerClothingDropdown = ({ multiSelect = false }) => {
       )
       setSelection([...selectionAfterRemoval])
     }
+    handleItems(item)
   }
 
   const isItemInSelection = (item) => {
@@ -121,10 +122,9 @@ const ToddlerClothingDropdown = ({ multiSelect = false }) => {
         onClick={() => toggle(!open)}
       >
         <div className='dd-header-title'>
-          <p>Toddler Clothing (2T-5T)</p>
-        </div>
-        <div className='dd-header-action'>
-          <p>{open ? 'Close' : 'Open'}</p>
+          <p>
+            Toddler Clothing (2T-5T) <button>{open ? 'Close' : 'Open'}</button>
+          </p>
         </div>
       </div>
       {open && (
@@ -132,8 +132,9 @@ const ToddlerClothingDropdown = ({ multiSelect = false }) => {
           {items.map((item) => (
             <li className='dd-list-item' key={item.id}>
               <button onClick={() => handleOnClick(item)}>
-                <span>{item.value}</span>{' '}
-                <span>{isItemInSelection(item) && 'Selected'}</span>
+                <span>
+                  {item.value} {isItemInSelection(item) && 'Selected'}
+                </span>
               </button>
             </li>
           ))}

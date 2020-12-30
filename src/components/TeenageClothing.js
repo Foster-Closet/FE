@@ -1,93 +1,49 @@
 import React, { useState } from 'react'
 
-const TeenageClothingDropdown = ({ multiSelect = false }) => {
+const TeenageClothingDropdown = ({ handleItems, multiSelect = false }) => {
   const [open, setOpen] = useState(false)
   const [selection, setSelection] = useState([])
   const toggle = () => setOpen(!open)
 
   const items = [
     {
-      id: 1,
+      id: 110,
       value: 'Extra Small Shirts'
     },
     {
-      id: 2,
-      value: 'Extra Small Shoes'
-    },
-    {
-      id: 3,
-      value: 'Extra Small Socks'
-    },
-    {
-      id: 4,
+      id: 111,
       value: 'Extra Small Pants'
     },
     {
-      id: 5,
+      id: 112,
       value: 'Small Shirts'
     },
     {
-      id: 6,
-      value: 'Small Shoes'
-    },
-    {
-      id: 7,
-      value: 'Small Socks'
-    },
-    {
-      id: 8,
+      id: 113,
       value: 'Small Pants'
     },
     {
-      id: 9,
-      value: 'Hats'
-    },
-    {
-      id: 10,
+      id: 114,
       value: 'Medium Shirts'
     },
     {
-      id: 11,
-      value: 'Medium Shoes'
-    },
-    {
-      id: 12,
-      value: 'Medium Socks'
-    },
-    {
-      id: 13,
+      id: 115,
       value: 'Medium Pants'
     },
     {
-      id: 14,
+      id: 116,
       value: 'Large Shirts'
     },
     {
-      id: 15,
-      value: 'Large Shoes'
-    },
-    {
-      id: 16,
-      value: 'Large Socks'
-    },
-    {
-      id: 17,
+      id: 117,
       value: 'Large Pants'
     },
     {
-      id: 18,
+      id: 118,
       value: 'Extra Large Shirts'
     },
     {
-      id: 19,
-      value: 'Extra Large Shoes'
-    },
-    {
-      id: 20,
-      value: 'Extra Large Socks'
-    },
-    {
-      id: 21,
+      id: 119,
       value: 'Extra Large Pants'
     }
   ]
@@ -106,6 +62,7 @@ const TeenageClothingDropdown = ({ multiSelect = false }) => {
       )
       setSelection([...selectionAfterRemoval])
     }
+    handleItems(item)
   }
 
   const isItemInSelection = (item) => {
@@ -125,10 +82,10 @@ const TeenageClothingDropdown = ({ multiSelect = false }) => {
         onClick={() => toggle(!open)}
       >
         <div className='dd-header-title'>
-          <p>Teenage Clothing (13-18 Years Old)</p>
-        </div>
-        <div className='dd-header-action'>
-          <p>{open ? 'Close' : 'Open'}</p>
+          <p>
+            Teenage Clothing (13-18 Years Old){' '}
+            <button>{open ? 'Close' : 'Open'}</button>
+          </p>
         </div>
       </div>
       {open && (

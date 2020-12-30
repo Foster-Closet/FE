@@ -1,29 +1,29 @@
 import React, { useState } from 'react'
 
-const DiapersDropdown = ({ multiSelect = false }) => {
+const DiapersDropdown = ({ handleItems, multiSelect = false }) => {
   const [open, setOpen] = useState(false)
   const [selection, setSelection] = useState([])
   const toggle = () => setOpen(!open)
 
   const items = [
     {
-      id: 1,
+      id: 61,
       value: 'Diapers'
     },
     {
-      id: 2,
+      id: 62,
       value: 'Changing Pad'
     },
     {
-      id: 3,
+      id: 63,
       value: 'Baby Powder'
     },
     {
-      id: 4,
+      id: 64,
       value: 'Changing Table'
     },
     {
-      id: 5,
+      id: 65,
       value: 'Diaper Cream'
     }
   ]
@@ -42,6 +42,7 @@ const DiapersDropdown = ({ multiSelect = false }) => {
       )
       setSelection([...selectionAfterRemoval])
     }
+    handleItems(item)
   }
 
   const isItemInSelection = (item) => {
@@ -61,10 +62,10 @@ const DiapersDropdown = ({ multiSelect = false }) => {
         onClick={() => toggle(!open)}
       >
         <div className='dd-header-title'>
-          <p>Diapers/Changing Equipment</p>
-        </div>
-        <div className='dd-header-action'>
-          <p>{open ? 'Close' : 'Open'}</p>
+          <p>
+            Diapers & Changing Equipment{' '}
+            <button>{open ? 'Close' : 'Open'}</button>
+          </p>
         </div>
       </div>
       {open && (
@@ -72,8 +73,9 @@ const DiapersDropdown = ({ multiSelect = false }) => {
           {items.map((item) => (
             <li className='dd-list-item' key={item.id}>
               <button onClick={() => handleOnClick(item)}>
-                <span>{item.value}</span>{' '}
-                <span>{isItemInSelection(item) && 'Selected'}</span>
+                <span>
+                  {item.value} {isItemInSelection(item) && 'Selected'}
+                </span>
               </button>
             </li>
           ))}

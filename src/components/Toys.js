@@ -1,33 +1,33 @@
 import React, { useState } from 'react'
 
-const ToysDropdown = ({ multiSelect = false }) => {
+const ToysDropdown = ({ handleItems, multiSelect = false }) => {
   const [open, setOpen] = useState(false)
   const [selection, setSelection] = useState([])
   const toggle = () => setOpen(!open)
 
   const items = [
     {
-      id: 1,
+      id: 55,
       value: 'Baby Books'
     },
     {
-      id: 2,
+      id: 56,
       value: 'Floor Gym'
     },
     {
-      id: 3,
+      id: 57,
       value: 'Play Set'
     },
     {
-      id: 4,
+      id: 58,
       value: 'Toddler-Safe Toys'
     },
     {
-      id: 5,
+      id: 59,
       value: 'Child-Safe Toys'
     },
     {
-      id: 6,
+      id: 60,
       value: 'Teenager Toys'
     }
   ]
@@ -46,6 +46,7 @@ const ToysDropdown = ({ multiSelect = false }) => {
       )
       setSelection([...selectionAfterRemoval])
     }
+    handleItems(item)
   }
 
   const isItemInSelection = (item) => {
@@ -65,10 +66,9 @@ const ToysDropdown = ({ multiSelect = false }) => {
         onClick={() => toggle(!open)}
       >
         <div className='dd-header-title'>
-          <p>Toys/Entertainment</p>
-        </div>
-        <div className='dd-header-action'>
-          <p>{open ? 'Close' : 'Open'}</p>
+          <p>
+            Toys & Entertainment <button>{open ? 'Close' : 'Open'}</button>
+          </p>
         </div>
       </div>
       {open && (
@@ -76,8 +76,9 @@ const ToysDropdown = ({ multiSelect = false }) => {
           {items.map((item) => (
             <li className='dd-list-item' key={item.id}>
               <button onClick={() => handleOnClick(item)}>
-                <span>{item.value}</span>{' '}
-                <span>{isItemInSelection(item) && 'Selected'}</span>
+                <span>
+                  {item.value} {isItemInSelection(item) && 'Selected'}
+                </span>
               </button>
             </li>
           ))}
