@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
-import { Redirect } from 'react-router-dom'
+import { Redirect, Link, useParams } from 'react-router-dom'
 
 const FFDashboard = ({ auth }) => {
   const [requestList, setRequestList] = useState([])
+
 
   useEffect(() => {
     axios
@@ -15,6 +16,21 @@ const FFDashboard = ({ auth }) => {
       })
   }, [auth])
 
+  function deleteRegistry(registryToDelete) {
+    console.log({ registryToDelete })
+    axios.
+      delete(`https://foster-closet.herokuapp.com/api/registry/${registryToDelete.id}`, {
+        auth: auth
+      })
+      .then(response => {
+        setRequestList(requestList.filter(currentRegistry => (
+          currentRegistry.id !== registryToDelete.id)
+        ))
+      })
+  }
+
+
+
   if (!auth) {
     return <Redirect to='/foster-family-login' />
   }
@@ -22,7 +38,7 @@ const FFDashboard = ({ auth }) => {
   return (
     <div className='FFDashboard'>
       <h1>Helping our community</h1>
-      <a href='/create-request'>Create a Request</a>
+      <Link to='/create-request'>Create a Request </Link>
       <div>
         <h1>My Requested List</h1>
         {requestList.map((item) => (
@@ -33,6 +49,9 @@ const FFDashboard = ({ auth }) => {
                 <li key={sub.id}>{sub.description}</li>
               ))}
             </ul>
+            <div>
+              <button onClick={() => deleteRegistry(item)}>Delete Registry</button>
+            </div>
           </div>
         ))}
       </div>
