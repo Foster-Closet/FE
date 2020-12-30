@@ -1,65 +1,65 @@
 import React, { useState } from 'react'
 
-const YouthShoesDropdown = ({ multiSelect = false }) => {
+const YouthShoesDropdown = ({ handleItems, multiSelect = false }) => {
   const [open, setOpen] = useState(false)
   const [selection, setSelection] = useState([])
   const toggle = () => setOpen(!open)
 
   const items = [
     {
-      id: 1,
+      id: 96,
       value: 'Socks'
     },
     {
-      id: 2,
+      id: 97,
       value: '1'
     },
     {
-      id: 3,
+      id: 98,
       value: '1.5'
     },
     {
-      id: 4,
+      id: 99,
       value: '2'
     },
     {
-      id: 5,
+      id: 100,
       value: '2.5'
     },
     {
-      id: 6,
+      id: 101,
       value: '3'
     },
     {
-      id: 7,
+      id: 102,
       value: '3.5'
     },
     {
-      id: 8,
+      id: 103,
       value: '4'
     },
     {
-      id: 9,
+      id: 104,
       value: '4.5'
     },
     {
-      id: 10,
+      id: 105,
       value: '5'
     },
     {
-      id: 11,
+      id: 106,
       value: '5.5'
     },
     {
-      id: 12,
+      id: 107,
       value: '6'
     },
     {
-      id: 13,
+      id: 108,
       value: '6.5'
     },
     {
-      id: 14,
+      id: 109,
       value: '7'
     }
   ]
@@ -78,6 +78,7 @@ const YouthShoesDropdown = ({ multiSelect = false }) => {
       )
       setSelection([...selectionAfterRemoval])
     }
+    handleItems(item)
   }
 
   const isItemInSelection = (item) => {
@@ -97,10 +98,10 @@ const YouthShoesDropdown = ({ multiSelect = false }) => {
         onClick={() => toggle(!open)}
       >
         <div className='dd-header-title'>
-          <p>Youth Shoes (6-12 Years Old)</p>
-        </div>
-        <div className='dd-header-action'>
-          <p>{open ? 'Close' : 'Open'}</p>
+          <p>
+            Youth Shoes (6-12 Years Old){' '}
+            <button>{open ? 'Close' : 'Open'}</button>
+          </p>
         </div>
       </div>
       {open && (

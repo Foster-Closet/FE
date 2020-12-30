@@ -1,73 +1,73 @@
 import React, { useState } from 'react'
 
-const TeenageShoesDropdown = ({ multiSelect = false }) => {
+const TeenageShoesDropdown = ({ handleItems, multiSelect = false }) => {
   const [open, setOpen] = useState(false)
   const [selection, setSelection] = useState([])
   const toggle = () => setOpen(!open)
 
   const items = [
     {
-      id: 1,
+      id: 120,
       value: 'Socks'
     },
     {
-      id: 2,
+      id: 121,
       value: '6'
     },
     {
-      id: 3,
+      id: 122,
       value: '6.5'
     },
     {
-      id: 4,
+      id: 123,
       value: '7'
     },
     {
-      id: 5,
+      id: 124,
       value: '7.5'
     },
     {
-      id: 6,
+      id: 125,
       value: '8'
     },
     {
-      id: 7,
+      id: 126,
       value: '8.5'
     },
     {
-      id: 8,
+      id: 127,
       value: '9'
     },
     {
-      id: 9,
+      id: 128,
       value: '9.5'
     },
     {
-      id: 10,
+      id: 129,
       value: '10'
     },
     {
-      id: 11,
+      id: 130,
       value: '10.5'
     },
     {
-      id: 12,
+      id: 131,
       value: '11'
     },
     {
-      id: 13,
+      id: 132,
       value: '11.5'
     },
     {
-      id: 14,
+      id: 133,
       value: '12'
     },
     {
-      id: 15,
+      id: 134,
       value: '13'
     },
     {
-      id: 16,
+      id: 135,
       value: '14+'
     }
   ]
@@ -86,6 +86,7 @@ const TeenageShoesDropdown = ({ multiSelect = false }) => {
       )
       setSelection([...selectionAfterRemoval])
     }
+    handleItems(item)
   }
 
   const isItemInSelection = (item) => {
@@ -105,10 +106,10 @@ const TeenageShoesDropdown = ({ multiSelect = false }) => {
         onClick={() => toggle(!open)}
       >
         <div className='dd-header-title'>
-          <p>Teenage Shoes (13-18 Years Old)</p>
-        </div>
-        <div className='dd-header-action'>
-          <p>{open ? 'Close' : 'Open'}</p>
+          <p>
+            Teenage Shoes (13-18 Years Old){' '}
+            <button>{open ? 'Close' : 'Open'}</button>
+          </p>
         </div>
       </div>
       {open && (

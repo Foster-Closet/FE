@@ -13,35 +13,38 @@ import YouthShoesDropdown from './YouthShoes'
 import TeenageClothingDropdown from './TeenageClothing'
 import TeenageShoesDropdown from './TeenageShoes'
 
-const CreateRequest = ({ auth, items }) => {
+const CreateRequest = ({ auth }) => {
   const [submitted, setSubmitted] = useState(false)
+  const [items, setItems] = useState([])
 
   const handleSubmit = () => {
+    const newItems = items.map((item) => {
+      const itemObj = { description: item.value }
+      return itemObj
+    })
     axios
       .post(
         'https://foster-closet.herokuapp.com/api/registry/',
         {
-          items: [
-            {
-              description: TravelEquipmentDropdown,
-              FeedingEquipmentDropdown,
-              BedroomBathroomDropdown,
-              ToysDropdown,
-              DiapersDropdown,
-              NewbornClothingDropdown,
-              ToddlerClothingDropdown,
-              YouthClothingDropdown,
-              TeenageClothingDropdown,
-              YouthShoesDropdown,
-              TeenageShoesDropdown
-            }
-          ]
+          items: newItems
         },
         { headers: { Authorization: `Token ${auth}` } }
       )
       .then((response) => {
         setSubmitted(true)
       })
+  }
+
+  const handleItems = (item) => {
+    if (!items.some((current) => current.id === item.id)) {
+      setItems([...items, item])
+    } else {
+      let itemsAfterRemoval = items
+      itemsAfterRemoval = itemsAfterRemoval.filter(
+        (current) => current.id !== item.id
+      )
+      setItems([...itemsAfterRemoval])
+    }
   }
 
   if (submitted) {
@@ -54,43 +57,59 @@ const CreateRequest = ({ auth, items }) => {
       <div>
         <TravelEquipmentDropdown
           title='Travel Equipment'
-          items={items}
           multiSelect
+          handleItems={handleItems}
         />
         <FeedingEquipmentDropdown
           title='Feeding Equipment'
-          items={items}
+          handleItems={handleItems}
           multiSelect
         />
         <BedroomBathroomDropdown
           title='Bedroom/Bathroom'
-          items={items}
+          handleItems={handleItems}
           multiSelect
         />
-        <ToysDropdown title='Toys/Entertainment' items={items} multiSelect />
-        <DiapersDropdown title='Diapers/Changing' items={items} multiSelect />
+        <ToysDropdown
+          title='Toys/Entertainment'
+          handleItems={handleItems}
+          multiSelect
+        />
+        <DiapersDropdown
+          title='Diapers/Changing'
+          handleItems={handleItems}
+          multiSelect
+        />
         <NewbornClothingDropdown
           title='Newborn Clothing'
-          items={items}
+          handleItems={handleItems}
           multiSelect
         />
         <ToddlerClothingDropdown
           title='Toddler Clothing'
-          items={items}
+          handleItems={handleItems}
           multiSelect
         />
         <YouthClothingDropdown
           title='Youth Clothing'
-          items={items}
+          handleItems={handleItems}
           multiSelect
         />
-        <YouthShoesDropdown title='Youth Shoes' items={items} multiSelect />
+        <YouthShoesDropdown
+          title='Youth Shoes'
+          handleItems={handleItems}
+          multiSelect
+        />
         <TeenageClothingDropdown
           title='Teenage Clothing'
-          items={items}
+          handleItems={handleItems}
           multiSelect
         />
-        <TeenageShoesDropdown title='Teenage Shoes' items={items} multiSelect />
+        <TeenageShoesDropdown
+          title='Teenage Shoes'
+          handleItems={handleItems}
+          multiSelect
+        />
       </div>
       <button onClick={handleSubmit}>Submit Request</button>
     </div>
