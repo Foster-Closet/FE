@@ -3,9 +3,8 @@ import axios from 'axios'
 import { Redirect, Link, useParams } from 'react-router-dom'
 
 const FFDashboard = ({ auth }) => {
-  const { id } = useParams
   const [requestList, setRequestList] = useState([])
-  const [deleted, setDeleted] = useState(false)
+
 
   useEffect(() => {
     axios
@@ -17,23 +16,25 @@ const FFDashboard = ({ auth }) => {
       })
   }, [auth])
 
-  function deleteRegistry() {
-    axios.delete('https://foster-closet.herokuapp.com/api/registry/<pk>/', {
-      auth: auth
-    })
+  function deleteRegistry(registryToDelete) {
+    console.log({ registryToDelete })
+    axios.
+      delete(`https://foster-closet.herokuapp.com/api/registry/${registryToDelete.id}`, {
+        auth: auth
+      })
       .then(response => {
-        setDeleted(true)
+        setRequestList(requestList.filter(currentRegistry => (
+          currentRegistry.id !== registryToDelete.id)
+        ))
       })
   }
+
 
 
   if (!auth) {
     return <Redirect to='/foster-family-login' />
   }
 
-  /*if (deleted) {
-    return <Redirect to='/foster' />
-  }*/
   return (
     <div className='FFDashboard'>
       <h1>Helping our community</h1>
@@ -49,7 +50,7 @@ const FFDashboard = ({ auth }) => {
               ))}
             </ul>
             <div>
-              <button onClick={deleteRegistry}>Delete Registry</button>
+              <button onClick={() => deleteRegistry(item)}>Delete Registry</button>
             </div>
           </div>
         ))}
