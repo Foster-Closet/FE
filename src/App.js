@@ -5,8 +5,9 @@ import FFRegister from './components/FFRegister'
 import FFLogin from './components/FFLogin'
 import DonorRegister from './components/DonorRegister'
 import DonorLogin from './components/DonorLogin'
-import FFDashboard from './components/FFDashboard'
+import FFDashboard from './components/FFDashBoard'
 import DonorDashboard from './components/DonorDashboard'
+import Messaging from './components/Messaging'
 import LandingPage from './components/LandingPage'
 import { ThemeProvider } from 'styled-components'
 import { GlobalStyles } from './globals'
@@ -43,6 +44,7 @@ const App = () => {
               <Route path='/donor-login'>
                 <DonorLogin auth={auth} onLogin={setAuth} />
               </Route>
+
               <Route path='/foster-family-dashboard'>
                 <FFDashboard auth={auth} />
               </Route>
@@ -53,6 +55,10 @@ const App = () => {
 
               <Route path='/create-request'>
                 <CreateRequest auth={auth} />
+              </Route>
+
+              <Route path='/messaging'>
+                <Messaging auth={auth} />
               </Route>
 
               <Route exact path='/'>
@@ -66,7 +72,7 @@ const App = () => {
           </div>
         </div>
       </>
-    </ThemeProvider>
+    </ThemeProvider >
   )
 }
 
