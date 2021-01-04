@@ -14,6 +14,7 @@ import { GlobalStyles } from './globals'
 import { theme } from './theme'
 import Burger from './components/Burger'
 import Menu from './components/Menu'
+import ReactChat from './components/ReactChat/'
 import { useLocalStorage, useOnClickOutside } from './hooks'
 
 const App = () => {
@@ -59,6 +60,10 @@ const App = () => {
 
               <Route path='/messaging'>
                 <Messaging auth={auth} />
+              </Route>
+
+              <Route path='/chat'>
+                <ReactChat auth={auth} />
               </Route>
 
               <Route exact path='/'>

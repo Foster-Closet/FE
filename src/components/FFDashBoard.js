@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import { Redirect, Link } from 'react-router-dom'
 
+
 const FFDashboard = ({ auth }) => {
   const [requestList, setRequestList] = useState([])
 
@@ -52,6 +53,8 @@ const FFDashboard = ({ auth }) => {
               <button onClick={() => deleteRegistry(item)}>
                 Delete Registry
               </button>
+              <button><Link to='/chat'>Open Chat</Link></button>
+
             </div>
           </div>
         ))}

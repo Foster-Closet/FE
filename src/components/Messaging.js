@@ -28,7 +28,7 @@ class App extends Component {
             <div className="App">
                 <div style={{ marginTop: 10 }} >
                     <h2> Send Text Message </h2>
-                    <label> Your Phone Number </label>
+                    <label> Phone Number </label>
                     <br />
                     <input value={text.recipient}
                         onChange={e => this.setState({ text: { ...text, recipient: e.target.value } })} />

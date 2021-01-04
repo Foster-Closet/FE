@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
-import { Redirect } from 'react-router-dom'
+import { Redirect, Link } from 'react-router-dom'
 
 const DonorDashboard = ({ auth }) => {
   const [requestList, setRequestList] = useState([])
@@ -32,6 +32,12 @@ const DonorDashboard = ({ auth }) => {
               {item.items.map((sub) => (
                 <li key={sub.id}>{sub.description}</li>
               ))}
+              <Link to="/chatapp">
+                <button>
+                  <Link to='/chat'>Open Chat
+                </Link>
+                </button>
+              </Link>
             </ul>
           </div>
         ))}

@@ -19,6 +19,10 @@ const Menu = ({ open }) => {
         <span aria-label='messaging' />
         Messaging
       </a>
+      <a href='/chatapp'>
+        <span aria-label='messaging' />
+        Chat
+      </a>
       <a href='/'>
         <span aria-label='logout' />
         Log Out
