@@ -12,6 +12,7 @@ import YouthClothingDropdown from './YouthClothing'
 import YouthShoesDropdown from './YouthShoes'
 import TeenageClothingDropdown from './TeenageClothing'
 import TeenageShoesDropdown from './TeenageShoes'
+import Button from '@material-ui/core/Button'
 
 const CreateRequest = ({ auth }) => {
   const [submitted, setSubmitted] = useState(false)
@@ -25,9 +26,7 @@ const CreateRequest = ({ auth }) => {
     axios
       .post(
         'https://foster-closet.herokuapp.com/api/registry/',
-        {
-          items: newItems
-        },
+        { items: newItems },
         { headers: { Authorization: `Token ${auth}` } }
       )
       .then((response) => {
@@ -111,7 +110,9 @@ const CreateRequest = ({ auth }) => {
           multiSelect
         />
       </div>
-      <button onClick={handleSubmit}>Submit Request</button>
+      <Button color='primary' onClick={handleSubmit}>
+        Submit Request
+      </Button>
     </div>
   )
 }
