@@ -63,6 +63,7 @@ const FFRegister = ({ auth, onRegister }) => {
           <input
             type='tel'
             id='phoneNumber'
+            required
             value={phoneNumber}
             onChange={(event) => setPhoneNumber(event.target.value)}
           />

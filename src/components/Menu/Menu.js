@@ -1,29 +1,31 @@
 import React from 'react'
+import axios from 'axios'
 import { bool } from 'prop-types'
 import { StyledMenu } from './Menu.styled'
 import { Link, BrowserRouter } from 'react-router-dom'
-// create a "checked" function that checks to see whether you are logged in as a FF or as a Donor to display the correct dashboard when clicked
 
-const Menu = ({ open }) => {
+const Menu = ({ open, auth }) => {
+  const handleLogout = () => {
+    axios.post('https://foster-closet.herokuapp.com/auth/token/logout/', {
+      headers: { Authorization: `Token ${auth}` }
+    })
+  }
+
   return (
     <StyledMenu open={open}>
       <BrowserRouter>
         <Link to='/foster-family-dashboard'>
           <span aria-label='my dashboard' />
-        My Dashboard
-      </Link>
-        <Link to='/notifications'>
-          <span aria-label='notifications' />
-        Notifications
-      </Link>
+          My Dashboard
+        </Link>
         <Link to='/messaging'>
           <span aria-label='messaging' />
-        Messaging
-      </Link>
-        <Link to='/'>
+          Messaging
+        </Link>
+        <Link onClick={() => handleLogout()}>
           <span aria-label='logout' />
-        Log Out
-      </Link>
+          Logout
+        </Link>
       </BrowserRouter>
     </StyledMenu>
   )

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
-import { Redirect, Link } from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
+import Button from '@material-ui/core/Button'
 
 const FFDashboard = ({ auth }) => {
   const [requestList, setRequestList] = useState([])
@@ -19,9 +20,7 @@ const FFDashboard = ({ auth }) => {
     axios
       .delete(
         `https://foster-closet.herokuapp.com/api/registry/${registryToDelete.id}`,
-        {
-          auth: auth
-        }
+        { auth: auth }
       )
       .then((response) => {
         setRequestList(
@@ -38,7 +37,9 @@ const FFDashboard = ({ auth }) => {
 
   return (
     <div className='FFDashboard'>
-      <Link to='/create-request'>Create a Request </Link>
+      <Button color='primary' href='/create-request'>
+        Create a Request
+      </Button>
       <div>
         {requestList.map((item) => (
           <div key={item.id}>
@@ -49,9 +50,14 @@ const FFDashboard = ({ auth }) => {
               ))}
             </ul>
             <div>
-              <button onClick={() => deleteRegistry(item)}>
+              <Button color='primary' href={`/request/${item.id}/update`}>
+                Update this request
+              </Button>
+            </div>
+            <div>
+              <Button color='secondary' onClick={() => deleteRegistry(item)}>
                 Delete Registry
-              </button>
+              </Button>
             </div>
           </div>
         ))}
