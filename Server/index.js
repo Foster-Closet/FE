@@ -1,10 +1,11 @@
-const express = require('./node_modules/express');
-const cors = require('./node_modules/cors');
-const twilio = require('./node_modules/twilio');
+
+const express = require('express');
+const cors = require('cors');
+const twilio = require('twilio');
 
 //twilio requirements -- Texting API 
-const accountSid = 'TWILIO_ACCOUNT_SID';
-const authToken = 'TWILIO_AUTH_TOKEN';
+const accountSid = 'AC808003b386c86c30a8c3a7b0a82f5dda';
+const authToken = '1886e9b5a44229bba15831c85e1670a2';
 const client = new twilio(accountSid, authToken);
 
 const app = express(); //alias
