@@ -9,7 +9,7 @@ const FFDashboard = ({ auth }) => {
   useEffect(() => {
     axios
       .get('https://foster-closet.herokuapp.com/api/registry/', {
-        auth: auth
+        headers: { Authorization: `Token ${auth}` }
       })
       .then((response) => {
         setRequestList(response.data)
@@ -20,7 +20,7 @@ const FFDashboard = ({ auth }) => {
     axios
       .delete(
         `https://foster-closet.herokuapp.com/api/registry/${registryToDelete.id}`,
-        { auth: auth }
+        { headers: { Authorization: `Token ${auth}` } }
       )
       .then((response) => {
         setRequestList(

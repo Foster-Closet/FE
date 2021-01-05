@@ -1,17 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import { Redirect, useParams } from 'react-router-dom'
-import TravelEquipmentDropdown from './TravelEquipment'
-import FeedingEquipmentDropdown from './FeedingEquipment'
-import BedroomBathroomDropdown from './BedroomBathroom'
-import ToysDropdown from './Toys'
-import DiapersDropdown from './Diapers'
-import NewbornClothingDropdown from './NewbornClothing'
-import ToddlerClothingDropdown from './ToddlerClothing'
-import YouthClothingDropdown from './YouthClothing'
-import YouthShoesDropdown from './YouthShoes'
-import TeenageClothingDropdown from './TeenageClothing'
-import TeenageShoesDropdown from './TeenageShoes'
+import Dropdown from './ItemsToChoose'
 import Button from '@material-ui/core/Button'
 
 const UpdateRequest = ({ auth }) => {
@@ -23,7 +13,7 @@ const UpdateRequest = ({ auth }) => {
   useEffect(() => {
     axios
       .get('https://foster-closet.herokuapp.com/api/registry/', {
-        auth: auth
+        headers: { Authorization: `Token ${auth}` }
       })
       .then((response) => {
         setRequestList(response.data)
@@ -51,7 +41,7 @@ const UpdateRequest = ({ auth }) => {
       .delete(
         `https://foster-closet.herokuapp.com/api/item/${itemToDelete.id}`,
         {
-          auth: auth
+          headers: { Authorization: `Token ${auth}` }
         }
       )
       .then((response) => {
@@ -109,60 +99,10 @@ const UpdateRequest = ({ auth }) => {
         Choose the items you wish to add to this request from the list below
       </h2>
       <div>
-        <TravelEquipmentDropdown
+        <Dropdown
           title='Travel Equipment'
           multiSelect
           handleItems={handleItems}
-        />
-        <FeedingEquipmentDropdown
-          title='Feeding Equipment'
-          handleItems={handleItems}
-          multiSelect
-        />
-        <BedroomBathroomDropdown
-          title='Bedroom/Bathroom'
-          handleItems={handleItems}
-          multiSelect
-        />
-        <ToysDropdown
-          title='Toys/Entertainment'
-          handleItems={handleItems}
-          multiSelect
-        />
-        <DiapersDropdown
-          title='Diapers/Changing'
-          handleItems={handleItems}
-          multiSelect
-        />
-        <NewbornClothingDropdown
-          title='Newborn Clothing'
-          handleItems={handleItems}
-          multiSelect
-        />
-        <ToddlerClothingDropdown
-          title='Toddler Clothing'
-          handleItems={handleItems}
-          multiSelect
-        />
-        <YouthClothingDropdown
-          title='Youth Clothing'
-          handleItems={handleItems}
-          multiSelect
-        />
-        <YouthShoesDropdown
-          title='Youth Shoes'
-          handleItems={handleItems}
-          multiSelect
-        />
-        <TeenageClothingDropdown
-          title='Teenage Clothing'
-          handleItems={handleItems}
-          multiSelect
-        />
-        <TeenageShoesDropdown
-          title='Teenage Shoes'
-          handleItems={handleItems}
-          multiSelect
         />
       </div>
       <Button color='primary' onClick={handleSubmit}>

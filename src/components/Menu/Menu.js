@@ -1,14 +1,24 @@
-import React from 'react'
+import React, { useState } from 'react'
 import axios from 'axios'
 import { bool } from 'prop-types'
 import { StyledMenu } from './Menu.styled'
-import { Link, BrowserRouter } from 'react-router-dom'
+import { Link, BrowserRouter, Redirect } from 'react-router-dom'
 
 const Menu = ({ open, auth }) => {
+  const [logout, setLogout] = useState(false)
+
   const handleLogout = () => {
-    axios.post('https://foster-closet.herokuapp.com/auth/token/logout/', {
-      headers: { Authorization: `Token ${auth}` }
-    })
+    axios
+      .post('https://foster-closet.herokuapp.com/auth/token/logout/', {
+        headers: { Authorization: `Token ${auth}` }
+      })
+      .then((resonse) => {
+        setLogout(true)
+      })
+  }
+
+  if (logout) {
+    return <Redirect to='/' />
   }
 
   return (
