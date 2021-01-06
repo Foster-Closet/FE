@@ -24,8 +24,8 @@ const App = () => {
     <ThemeProvider theme={theme}>
       <>
         <GlobalStyles />
-        <div>
-          <Router>
+        <Router>
+          <div>
             <Switch>
               <Route path='/request/:id/update'>
                 <UpdateRequest auth={auth} />
@@ -40,23 +40,27 @@ const App = () => {
               </Route>
 
               <Route path='/my-dashboard'>
-                <Dashboard auth={auth} />
+                <Dashboard
+                  auth={auth}
+                  handleUnauthorized={() => setAuth(null)}
+                />
               </Route>
 
               <Route path='/create-request'>
                 <CreateRequest auth={auth} />
               </Route>
 
-              <Route path='/village-app'>
+              <Route path='/'>
                 <LandingPage />
               </Route>
             </Switch>
-          </Router>
-          <div ref={node}>
-            <Burger open={open} setOpen={setOpen} />
-            <Menu auth={auth} open={open} setOpen={setOpen} />
+
+            <div ref={node}>
+              <Burger open={open} setOpen={setOpen} />
+              <Menu auth={auth} open={open} setOpen={setOpen} />
+            </div>
           </div>
-        </div>
+        </Router>
       </>
     </ThemeProvider>
   )

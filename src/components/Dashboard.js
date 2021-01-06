@@ -3,7 +3,7 @@ import axios from 'axios'
 import { Redirect } from 'react-router-dom'
 import Button from '@material-ui/core/Button'
 
-const Dashboard = ({ auth }) => {
+const Dashboard = ({ auth, handleUnauthorized }) => {
   const [requestList, setRequestList] = useState([])
 
   useEffect(() => {
@@ -14,7 +14,12 @@ const Dashboard = ({ auth }) => {
       .then((response) => {
         setRequestList(response.data)
       })
-  }, [auth])
+      .catch((error) => {
+        if (error.response && error.response.status === 401) {
+          handleUnauthorized()
+        }
+      })
+  }, [auth, handleUnauthorized])
 
   const deleteRegistry = (registryToDelete) => {
     axios

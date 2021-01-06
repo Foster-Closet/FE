@@ -5,6 +5,7 @@ import { Link, Redirect } from 'react-router-dom'
 const Login = ({ auth, onLogin }) => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
+  const [submitted, setSubmitted] = useState(false)
 
   const handleSubmit = (event) => {
     event.preventDefault()
@@ -20,9 +21,12 @@ const Login = ({ auth, onLogin }) => {
       .catch((error) => {
         console.log(error)
       })
+      .then((response) => {
+        setSubmitted(true)
+      })
   }
 
-  if (auth) {
+  if (submitted) {
     return <Redirect to='/my-dashboard' />
   }
 

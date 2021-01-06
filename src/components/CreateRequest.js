@@ -42,7 +42,7 @@ const CreateRequest = ({ auth }) => {
   }
 
   if (submitted) {
-    return <Redirect to='/foster-family-dashboard' />
+    return <Redirect to='/my-dashboard' />
   }
 
   return (
