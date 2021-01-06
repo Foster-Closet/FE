@@ -2,13 +2,14 @@ import React, { useState } from 'react'
 import axios from 'axios'
 import { Link, Redirect } from 'react-router-dom'
 
-const FFRegister = ({ auth, onRegister }) => {
+const Register = ({ auth, onRegister }) => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [name, setName] = useState('')
   const [zipcode, setZipcode] = useState('')
   const [email, setEmail] = useState('')
   const [phoneNumber, setPhoneNumber] = useState('')
+  const [submitted, setSubmitted] = useState(false)
 
   const handleSubmit = (event) => {
     event.preventDefault()
@@ -20,9 +21,7 @@ const FFRegister = ({ auth, onRegister }) => {
         name: name,
         zipcode: zipcode,
         email: email,
-        phoneNumber: phoneNumber,
-        is_foster: true,
-        is_donor: false
+        phoneNumber: phoneNumber
       })
       .then((response) => {
         onRegister({ username, password, name, zipcode, email, phoneNumber })
@@ -30,16 +29,19 @@ const FFRegister = ({ auth, onRegister }) => {
       .catch((error) => {
         console.log(error)
       })
+      .then((resonse) => {
+        setSubmitted(true)
+      })
   }
 
-  if (auth) {
-    return <Redirect to='/foster-family-dashboard' />
+  if (submitted) {
+    return <Redirect to='/my-dashboard' />
   }
 
   return (
     <div className='Register'>
       <h3>
-        Sign Up or <Link to='/foster-family-login'>Login</Link>
+        Sign Up or <Link to='/login'>Login</Link>
       </h3>
       <form onSubmit={handleSubmit}>
         <div>
@@ -102,4 +104,4 @@ const FFRegister = ({ auth, onRegister }) => {
   )
 }
 
-export default FFRegister
+export default Register

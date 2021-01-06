@@ -1,17 +1,7 @@
 import React, { useState } from 'react'
 import axios from 'axios'
 import { Redirect } from 'react-router-dom'
-import TravelEquipmentDropdown from './TravelEquipment'
-import FeedingEquipmentDropdown from './FeedingEquipment'
-import BedroomBathroomDropdown from './BedroomBathroom'
-import ToysDropdown from './Toys'
-import DiapersDropdown from './Diapers'
-import NewbornClothingDropdown from './NewbornClothing'
-import ToddlerClothingDropdown from './ToddlerClothing'
-import YouthClothingDropdown from './YouthClothing'
-import YouthShoesDropdown from './YouthShoes'
-import TeenageClothingDropdown from './TeenageClothing'
-import TeenageShoesDropdown from './TeenageShoes'
+import ItemsToChoose from './ItemsToChoose'
 import Button from '@material-ui/core/Button'
 
 const CreateRequest = ({ auth }) => {
@@ -20,7 +10,12 @@ const CreateRequest = ({ auth }) => {
 
   const handleSubmit = () => {
     const newItems = items.map((item) => {
-      const itemObj = { description: item.value }
+      let itemObj
+      if (item.value === 'Other') {
+        itemObj = { description: item.details }
+      } else {
+        itemObj = { description: item.value + ' ' + item.details }
+      }
       return itemObj
     })
     axios
@@ -47,68 +42,14 @@ const CreateRequest = ({ auth }) => {
   }
 
   if (submitted) {
-    return <Redirect to='/foster-family-dashboard' />
+    return <Redirect to='/my-dashboard' />
   }
 
   return (
     <div className='CreateRequest'>
       <h2>Create a request for you foster child here</h2>
       <div>
-        <TravelEquipmentDropdown
-          title='Travel Equipment'
-          multiSelect
-          handleItems={handleItems}
-        />
-        <FeedingEquipmentDropdown
-          title='Feeding Equipment'
-          handleItems={handleItems}
-          multiSelect
-        />
-        <BedroomBathroomDropdown
-          title='Bedroom/Bathroom'
-          handleItems={handleItems}
-          multiSelect
-        />
-        <ToysDropdown
-          title='Toys/Entertainment'
-          handleItems={handleItems}
-          multiSelect
-        />
-        <DiapersDropdown
-          title='Diapers/Changing'
-          handleItems={handleItems}
-          multiSelect
-        />
-        <NewbornClothingDropdown
-          title='Newborn Clothing'
-          handleItems={handleItems}
-          multiSelect
-        />
-        <ToddlerClothingDropdown
-          title='Toddler Clothing'
-          handleItems={handleItems}
-          multiSelect
-        />
-        <YouthClothingDropdown
-          title='Youth Clothing'
-          handleItems={handleItems}
-          multiSelect
-        />
-        <YouthShoesDropdown
-          title='Youth Shoes'
-          handleItems={handleItems}
-          multiSelect
-        />
-        <TeenageClothingDropdown
-          title='Teenage Clothing'
-          handleItems={handleItems}
-          multiSelect
-        />
-        <TeenageShoesDropdown
-          title='Teenage Shoes'
-          handleItems={handleItems}
-          multiSelect
-        />
+        <ItemsToChoose title='Items to choose' handleItems={handleItems} />
       </div>
       <Button color='primary' onClick={handleSubmit}>
         Submit Request
