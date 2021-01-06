@@ -12,6 +12,7 @@ import { theme } from './theme'
 import Burger from './components/Burger'
 import Menu from './components/Menu'
 import UpdateRequest from './components/UpdateRequest'
+import Messaging from './Messaging'
 import { useLocalStorage, useOnClickOutside } from './hooks'
 
 const App = () => {
@@ -50,7 +51,11 @@ const App = () => {
                 <CreateRequest auth={auth} />
               </Route>
 
-              <Route path='/'>
+              <Route path='/messaging'>
+                <Messaging auth={auth} />
+              </Route>
+
+              <Route exact path='/'>
                 <LandingPage />
               </Route>
             </Switch>
@@ -62,7 +67,7 @@ const App = () => {
           </div>
         </Router>
       </>
-    </ThemeProvider>
+    </ThemeProvider >
   )
 }
 
