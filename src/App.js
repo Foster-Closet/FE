@@ -12,7 +12,7 @@ import { theme } from './theme'
 import Burger from './components/Burger'
 import Menu from './components/Menu'
 import UpdateRequest from './components/UpdateRequest'
-import Messaging from './Messaging'
+import Messaging from './components/Messaging'
 import { useLocalStorage, useOnClickOutside } from './hooks'
 
 const App = () => {
@@ -67,7 +67,7 @@ const App = () => {
           </div>
         </Router>
       </>
-    </ThemeProvider >
+    </ThemeProvider>
   )
 }
 
