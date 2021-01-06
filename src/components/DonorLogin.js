@@ -10,7 +10,7 @@ const DonorLogin = ({ auth, onLogin }) => {
     event.preventDefault()
 
     axios
-      .get('https://foster-closet.herokuapp.com/auth/token/login/', {
+      .post('https://foster-closet.herokuapp.com/auth/token/login/', {
         auth: {
           username,
           password

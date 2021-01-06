@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 
-class App extends Component {
-
+class Messaging extends Component {
+    //Where does URL fit into this?
     state = {
         text: {
-            recipient: '',
+            user: '',
             textmessage: ''
         }
     }
@@ -12,7 +12,7 @@ class App extends Component {
     sendText = _ => {
         const { text } = this.state;
         //pass text message GET variables via query string
-        fetch(`http://192.168.1.4:3000/send-text?recipient=${text.recipient}&textmessage=${text.textmessage}`)
+        fetch()
             .catch(err => console.error(err))
     }
 
@@ -27,8 +27,7 @@ class App extends Component {
         return (
             <div className="App">
                 <div style={{ marginTop: 10 }} >
-                    <h2> Send Text Message </h2>
-                    <label> Phone Number </label>
+                    <h2> Message </h2>
                     <br />
                     <input value={text.recipient}
                         onChange={e => this.setState({ text: { ...text, recipient: e.target.value } })} />
@@ -45,4 +44,4 @@ class App extends Component {
     }
 }
 
-export default App;
+export default Messaging;

@@ -1,179 +1,175 @@
-import React from 'react'
-import { makeStyles } from '@material-ui/core/styles'
-import Grid from '@material-ui/core/Grid'
-import List from '@material-ui/core/List'
-import Card from '@material-ui/core/Card'
-import CardHeader from '@material-ui/core/CardHeader'
-import ListItem from '@material-ui/core/ListItem'
-import ListItemText from '@material-ui/core/ListItemText'
-import ListItemIcon from '@material-ui/core/ListItemIcon'
-import Checkbox from '@material-ui/core/Checkbox'
+import React, { useState, useEffect } from 'react'
+import axios from 'axios'
+import { Redirect, useParams } from 'react-router-dom'
+import TravelEquipmentDropdown from './TravelEquipment'
+import FeedingEquipmentDropdown from './FeedingEquipment'
+import BedroomBathroomDropdown from './BedroomBathroom'
+import ToysDropdown from './Toys'
+import DiapersDropdown from './Diapers'
+import NewbornClothingDropdown from './NewbornClothing'
+import ToddlerClothingDropdown from './ToddlerClothing'
+import YouthClothingDropdown from './YouthClothing'
+import YouthShoesDropdown from './YouthShoes'
+import TeenageClothingDropdown from './TeenageClothing'
+import TeenageShoesDropdown from './TeenageShoes'
 import Button from '@material-ui/core/Button'
-import Divider from '@material-ui/core/Divider'
 
-// https://material-ui.com/components/transfer-list/#enhanced-transfer-list
+const UpdateRequest = ({ auth }) => {
+  const { id } = useParams()
+  const [requestList, setRequestList] = useState([])
+  const [items, setItems] = useState([])
+  const [submitted, setSubmitted] = useState(false)
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    margin: 'auto'
-  },
-  cardHeader: {
-    padding: theme.spacing(1, 2)
-  },
-  list: {
-    width: 200,
-    height: 230,
-    backgroundColor: theme.palette.background.paper,
-    overflow: 'auto'
-  },
-  button: {
-    margin: theme.spacing(0.5, 0),
-    color: 'white'
-  }
-}))
+  useEffect(() => {
+    axios
+      .get('https://foster-closet.herokuapp.com/api/registry/', {
+        auth: auth
+      })
+      .then((response) => {
+        setRequestList(response.data)
+      })
+  }, [auth, id])
 
-const not = (a, b) => {
-  return a.filter((value) => b.indexOf(value) === -1)
-}
-
-const intersection = (a, b) => {
-  return a.filter((value) => b.indexOf(value) !== -1)
-}
-
-const union = (a, b) => {
-  return [...a, ...not(b, a)]
-}
-
-const TransferList = () => {
-  const classes = useStyles()
-  const [checked, setChecked] = React.useState([])
-  const [left, setLeft] = React.useState([])
-  const [right, setRight] = React.useState([])
-
-  const leftChecked = intersection(checked, left)
-  const rightChecked = intersection(checked, right)
-
-  const handleToggle = (value) => () => {
-    const currentIndex = checked.indexOf(value)
-    const newChecked = [...checked]
-
-    if (currentIndex === -1) {
-      newChecked.push(value)
-    } else {
-      newChecked.splice(currentIndex, 1)
-    }
-
-    setChecked(newChecked)
+  const handleSubmit = () => {
+    const newItems = items.map((item) => {
+      const itemObj = { description: item.value }
+      return itemObj
+    })
+    axios
+      .put(
+        `https://foster-closet.herokuapp.com/api/registry/${id}`,
+        { items: newItems },
+        { headers: { Authorization: `Token ${auth}` } }
+      )
+      .then((response) => {
+        setSubmitted(true)
+      })
   }
 
-  const numberOfChecked = (items) => intersection(checked, items).length
-
-  const handleToggleAll = (items) => () => {
-    if (numberOfChecked(items) === items.length) {
-      setChecked(not(checked, items))
-    } else {
-      setChecked(union(checked, items))
-    }
-  }
-
-  const handleCheckedRight = () => {
-    setRight(right.concat(leftChecked))
-    setLeft(not(left, leftChecked))
-    setChecked(not(checked, leftChecked))
-  }
-
-  const handleCheckedLeft = () => {
-    setLeft(left.concat(rightChecked))
-    setRight(not(right, rightChecked))
-    setChecked(not(checked, rightChecked))
-  }
-
-  const customList = (title, items) => (
-    <Card>
-      <CardHeader
-        className={classes.cardHeader}
-        avatar={
-          <Checkbox
-            onClick={handleToggleAll(items)}
-            checked={
-              numberOfChecked(items) === items.length && items.length !== 0
-            }
-            indeterminate={
-              numberOfChecked(items) !== items.length &&
-              numberOfChecked(items) !== 0
-            }
-            disabled={items.length === 0}
-            inputProps={{ 'aria-label': 'all items selected' }}
-          />
+  const deleteItemsInRegistry = (itemToDelete) => {
+    axios
+      .delete(
+        `https://foster-closet.herokuapp.com/api/item/${itemToDelete.id}`,
+        {
+          auth: auth
         }
-        title={title}
-        subheader={`${numberOfChecked(items)}/${items.length} selected`}
-      />
-      <Divider />
-      <List className={classes.list} dense component='div' role='list'>
-        {items.map((value) => {
-          const labelId = `transfer-list-all-item-${value}-label`
-
-          return (
-            <ListItem
-              key={value}
-              role='listitem'
-              button
-              onClick={handleToggle(value)}
-            >
-              <ListItemIcon>
-                <Checkbox
-                  checked={checked.indexOf(value) !== -1}
-                  tabIndex={-1}
-                  disableRipple
-                  inputProps={{ 'aria-labelledby': labelId }}
-                />
-              </ListItemIcon>
-              <ListItemText id={labelId} primary={`${value}`} />
-            </ListItem>
+      )
+      .then((response) => {
+        setRequestList(
+          requestList.filter(
+            (currentRegistry) => currentRegistry.id !== itemToDelete.id
           )
-        })}
-        <ListItem />
-      </List>
-    </Card>
-  )
+        )
+      })
+  }
+
+  if (!auth) {
+    return <Redirect to='/foster-family-login' />
+  }
+
+  if (submitted) {
+    return <Redirect to='/foster-family-dashboard' />
+  }
+
+  const handleItems = (item) => {
+    if (!items.some((current) => current.id === item.id)) {
+      setItems([...items, item])
+    } else {
+      let itemsAfterRemoval = items
+      itemsAfterRemoval = itemsAfterRemoval.filter(
+        (current) => current.id !== item.id
+      )
+      setItems([...itemsAfterRemoval])
+    }
+  }
 
   return (
-    <Grid
-      container
-      spacing={2}
-      justify='center'
-      alignItems='center'
-      className={classes.root}
-    >
-      <Grid item>{customList('Choices', left)}</Grid>
-      <Grid item>
-        <Grid container direction='column' alignItems='center'>
-          <Button
-            variant='outlined'
-            size='small'
-            className={classes.button}
-            onClick={handleCheckedRight}
-            disabled={leftChecked.length === 0}
-            aria-label='move selected right'
-          >
-            &gt;
-          </Button>
-          <Button
-            variant='outlined'
-            size='small'
-            className={classes.button}
-            onClick={handleCheckedLeft}
-            disabled={rightChecked.length === 0}
-            aria-label='move selected left'
-          >
-            &lt;
-          </Button>
-        </Grid>
-      </Grid>
-      <Grid item>{customList('Chosen', right)}</Grid>
-    </Grid>
+    <div className='UpdateRequest'>
+      <div>
+        {requestList.map((item) => (
+          <div key={item.id}>
+            Requested list {item.id}
+            <ul>
+              {item.items.map((sub) => (
+                <li key={sub.id}>
+                  {sub.description}{' '}
+                  <Button
+                    color='secondary'
+                    onClick={() => deleteItemsInRegistry(sub)}
+                  >
+                    Delete
+                  </Button>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+      <h2>
+        Choose the items you wish to add to this request from the list below
+      </h2>
+      <div>
+        <TravelEquipmentDropdown
+          title='Travel Equipment'
+          multiSelect
+          handleItems={handleItems}
+        />
+        <FeedingEquipmentDropdown
+          title='Feeding Equipment'
+          handleItems={handleItems}
+          multiSelect
+        />
+        <BedroomBathroomDropdown
+          title='Bedroom/Bathroom'
+          handleItems={handleItems}
+          multiSelect
+        />
+        <ToysDropdown
+          title='Toys/Entertainment'
+          handleItems={handleItems}
+          multiSelect
+        />
+        <DiapersDropdown
+          title='Diapers/Changing'
+          handleItems={handleItems}
+          multiSelect
+        />
+        <NewbornClothingDropdown
+          title='Newborn Clothing'
+          handleItems={handleItems}
+          multiSelect
+        />
+        <ToddlerClothingDropdown
+          title='Toddler Clothing'
+          handleItems={handleItems}
+          multiSelect
+        />
+        <YouthClothingDropdown
+          title='Youth Clothing'
+          handleItems={handleItems}
+          multiSelect
+        />
+        <YouthShoesDropdown
+          title='Youth Shoes'
+          handleItems={handleItems}
+          multiSelect
+        />
+        <TeenageClothingDropdown
+          title='Teenage Clothing'
+          handleItems={handleItems}
+          multiSelect
+        />
+        <TeenageShoesDropdown
+          title='Teenage Shoes'
+          handleItems={handleItems}
+          multiSelect
+        />
+      </div>
+      <Button color='primary' onClick={handleSubmit}>
+        Update Request
+      </Button>
+    </div>
   )
 }
 
-export default TransferList
+export default UpdateRequest

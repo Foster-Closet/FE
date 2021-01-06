@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import { Redirect, Link } from 'react-router-dom'
+import Button from '@material-ui/core/Button'
 
 const DonorDashboard = ({ auth }) => {
   const [requestList, setRequestList] = useState([])
@@ -15,9 +16,26 @@ const DonorDashboard = ({ auth }) => {
       })
   }, [auth])
 
+  //Need to make sure this doesn't delete FF registry
+  const deleteRegistry = (registryToDelete) => {
+    axios
+      .delete(
+        `https://foster-closet.herokuapp.com/api/registry/${registryToDelete.id}`,
+        { auth: auth }
+      )
+      .then((response) => {
+        setRequestList(
+          requestList.filter(
+            (currentRegistry) => currentRegistry.id !== registryToDelete.id
+          )
+        )
+      })
+  }
+
   if (!auth) {
     return <Redirect to='/donor-login' />
   }
+
 
   return (
     <div className='DonorDashboard'>
@@ -32,17 +50,19 @@ const DonorDashboard = ({ auth }) => {
               {item.items.map((sub) => (
                 <li key={sub.id}>{sub.description}</li>
               ))}
-              <Link to="/chatapp">
-                <button>
-                  <Link to='/chat'>Open Chat
+              <button>
+                <Link
+                  to='/messaging'>Send
                 </Link>
-                </button>
-              </Link>
+              </button>
             </ul>
+            <Button color='secondary' onClick={() => deleteRegistry(item)}>
+              Delete Registry
+            </Button>
           </div>
         ))}
       </div>
-    </div>
+    </div >
   )
 }
 

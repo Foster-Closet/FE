@@ -11,18 +11,12 @@ const Menu = ({ open }) => {
         <span aria-label='my dashboard' />
         My Dashboard
       </a>
+
       <a href='/notifications'>
         <span aria-label='notifications' />
         Notifications
       </a>
-      <a href='/messaging'>
-        <span aria-label='messaging' />
-        Messaging
-      </a>
-      <a href='/chatapp'>
-        <span aria-label='messaging' />
-        Chat
-      </a>
+
       <a href='/'>
         <span aria-label='logout' />
         Log Out

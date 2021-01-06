@@ -1,3 +1,4 @@
+import 'tachyons'
 import React, { useState, useRef } from 'react'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import CreateRequest from './components/CreateRequest'
@@ -14,7 +15,8 @@ import { GlobalStyles } from './globals'
 import { theme } from './theme'
 import Burger from './components/Burger'
 import Menu from './components/Menu'
-import ReactChat from './components/ReactChat/'
+
+import UpdateRequest from './components/UpdateRequest'
 import { useLocalStorage, useOnClickOutside } from './hooks'
 
 const App = () => {
@@ -27,9 +29,13 @@ const App = () => {
     <ThemeProvider theme={theme}>
       <>
         <GlobalStyles />
-        <div className='App'>
+        <div>
           <Router>
             <Switch>
+              <Route path='/request/:id/update'>
+                <UpdateRequest auth={auth} />
+              </Route>
+
               <Route path='/foster-family-signup'>
                 <FFRegister auth={auth} onRegister={setAuth} />
               </Route>
@@ -60,10 +66,6 @@ const App = () => {
 
               <Route path='/messaging'>
                 <Messaging auth={auth} />
-              </Route>
-
-              <Route path='/chat'>
-                <ReactChat auth={auth} />
               </Route>
 
               <Route exact path='/'>

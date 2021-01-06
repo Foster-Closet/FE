@@ -39,7 +39,7 @@ const DonorRegister = ({ auth, onRegister }) => {
   return (
     <div className='Register'>
       <h3>
-        Sign up or <Link to='/foster-family-login'>Login</Link>
+        Sign up or <Link to='/donor-login'>Login</Link>
       </h3>
       <form onSubmit={handleSubmit}>
         <div>
@@ -63,6 +63,7 @@ const DonorRegister = ({ auth, onRegister }) => {
           <input
             type='tel'
             id='phoneNumber'
+            required
             value={phoneNumber}
             onChange={(event) => setPhoneNumber(event.target.value)}
           />
