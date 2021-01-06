@@ -67,7 +67,7 @@ const App = () => {
           </div>
         </Router>
       </>
-    </ThemeProvider >
+    </ThemeProvider>
   )
 }
 
