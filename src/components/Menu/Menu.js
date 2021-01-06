@@ -1,26 +1,44 @@
-import React from 'react'
+import React, { useState } from 'react'
+import axios from 'axios'
 import { bool } from 'prop-types'
 import { StyledMenu } from './Menu.styled'
+import { Link, BrowserRouter, Redirect } from 'react-router-dom'
 
-// create a "checked" function that checks to see whether you are logged in as a FF or as a Donor to display the correct dashboard when clicked
+const Menu = ({ open, auth }) => {
+  const [logout, setLogout] = useState(false)
 
-const Menu = ({ open }) => {
+  const handleLogout = () => {
+    axios
+      .post(
+        'https://foster-closet.herokuapp.com/auth/token/logout/',
+        {},
+        { headers: { Authorization: `Token ${auth}` } }
+      )
+      .then((resonse) => {
+        setLogout(true)
+      })
+  }
+
+  if (logout) {
+    return <Redirect to='/' />
+  }
+
   return (
     <StyledMenu open={open}>
-      <a href='/foster-family-dashboard'>
-        <span aria-label='my dashboard' />
-        My Dashboard
-      </a>
-
-      <a href='/notifications'>
-        <span aria-label='notifications' />
-        Notifications
-      </a>
-
-      <a href='/'>
-        <span aria-label='logout' />
-        Log Out
-      </a>
+      <BrowserRouter>
+        <Link to='/my-dashboard'>
+          <span aria-label='my dashboard' />
+          My Dashboard
+        </Link>
+        <Link to='/messaging'>
+          <span aria-label='messaging' />
+          Messaging
+        </Link>
+        <Link onClick={() => handleLogout()}>
+          <span aria-label='logout' />
+          Logout
+        </Link>
+      </BrowserRouter>
     </StyledMenu>
   )
 }

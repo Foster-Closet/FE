@@ -3,25 +3,29 @@ import axios from 'axios'
 import { Redirect } from 'react-router-dom'
 import Button from '@material-ui/core/Button'
 
-
-const FFDashboard = ({ auth }) => {
+const Dashboard = ({ auth, handleUnauthorized }) => {
   const [requestList, setRequestList] = useState([])
 
   useEffect(() => {
     axios
       .get('https://foster-closet.herokuapp.com/api/registry/', {
-        auth: auth
+        headers: { Authorization: `Token ${auth}` }
       })
       .then((response) => {
         setRequestList(response.data)
       })
-  }, [auth])
+      .catch((error) => {
+        if (error.response && error.response.status === 401) {
+          handleUnauthorized()
+        }
+      })
+  }, [auth, handleUnauthorized])
 
   const deleteRegistry = (registryToDelete) => {
     axios
       .delete(
         `https://foster-closet.herokuapp.com/api/registry/${registryToDelete.id}`,
-        { auth: auth }
+        { headers: { Authorization: `Token ${auth}` } }
       )
       .then((response) => {
         setRequestList(
@@ -33,21 +37,38 @@ const FFDashboard = ({ auth }) => {
   }
 
   if (!auth) {
-    return <Redirect to='/foster-family-login' />
+    return <Redirect to='/login' />
   }
-
   return (
-    <div className='FFDashboard'>
+    <div className='Dashboard pa5 ph10 ba br3 fl w-100 gold bg-lightest-blue'>
+      <h1 className='underline flex justify-center mh2 mv3'>
+        Welcome to The Virtual Foster Closet!
+      </h1>
+      <h2 className='flex justify-center h2 ma3 pv2 pa1 ph3'>
+        It takes a village to raise a child!
+      </h2>
+      <h2 className='flex justify-center h2 ma3 pv1 pa1 ph3'>
+        Thank You for your support!
+      </h2>
       <Button color='primary' href='/create-request'>
         Create a Request
       </Button>
       <div>
+        <h2>Please donate any requested items.</h2>
         {requestList.map((item) => (
-          <div key={item.id}>
-            Requested list {item.id}
-            <ul>
+          <div
+            className='white flex grow justify-left mh2 mv3 b--solid b--yellow br2'
+            key={item.id}
+          >
+            Request List # {item.id}
+            <ul className='mh2 mv3 b--yellow br2'>
               {item.items.map((sub) => (
-                <li key={sub.id}>{sub.description}</li>
+                <li
+                  className='flex justify-left mh2 mv3 b--yellow br2'
+                  key={sub.id}
+                >
+                  {sub.description}
+                </li>
               ))}
             </ul>
             <div>
@@ -66,5 +87,4 @@ const FFDashboard = ({ auth }) => {
     </div>
   )
 }
-
-export default FFDashboard
+export default Dashboard
