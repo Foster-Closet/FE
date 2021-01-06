@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import axios from 'axios'
 import { Redirect } from 'react-router-dom'
-import Dropdown from './ItemsToChoose'
+import ItemsToChoose from './ItemsToChoose'
 import Button from '@material-ui/core/Button'
 
 const CreateRequest = ({ auth }) => {
@@ -10,7 +10,12 @@ const CreateRequest = ({ auth }) => {
 
   const handleSubmit = () => {
     const newItems = items.map((item) => {
-      const itemObj = { description: item.value + item.details }
+      let itemObj
+      if (item.value === 'Other') {
+        itemObj = { description: item.details }
+      } else {
+        itemObj = { description: item.value + ' ' + item.details }
+      }
       return itemObj
     })
     axios
@@ -44,11 +49,7 @@ const CreateRequest = ({ auth }) => {
     <div className='CreateRequest'>
       <h2>Create a request for you foster child here</h2>
       <div>
-        <Dropdown
-          title='Items to choose'
-          multiSelect
-          handleItems={handleItems}
-        />
+        <ItemsToChoose title='Items to choose' handleItems={handleItems} />
       </div>
       <Button color='primary' onClick={handleSubmit}>
         Submit Request

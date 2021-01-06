@@ -11,14 +11,12 @@ export const GlobalStyles = createGlobalStyle`
     box-sizing: border-box;
   }
   body {
-    background: #0D0C1D;
-    color: #EFFFFA;
+    background: grey;
+    color: blue;
     display: flex;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     height: 100vh;
     justify-content: center;
     text-rendering: optimizeLegibility;
   }
-  background: ${({ theme }) => theme.primaryDark}
-  color: ${({ theme }) => theme.primaryLight}
   `

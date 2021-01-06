@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import { Redirect, useParams } from 'react-router-dom'
-import Dropdown from './ItemsToChoose'
+import ItemsToChoose from './ItemsToChoose'
 import Button from '@material-ui/core/Button'
 
 const UpdateRequest = ({ auth }) => {
@@ -54,11 +54,11 @@ const UpdateRequest = ({ auth }) => {
   }
 
   if (!auth) {
-    return <Redirect to='/foster-family-login' />
+    return <Redirect to='/login' />
   }
 
   if (submitted) {
-    return <Redirect to='/foster-family-dashboard' />
+    return <Redirect to='/my-dashboard' />
   }
 
   const handleItems = (item) => {
@@ -99,11 +99,7 @@ const UpdateRequest = ({ auth }) => {
         Choose the items you wish to add to this request from the list below
       </h2>
       <div>
-        <Dropdown
-          title='Travel Equipment'
-          multiSelect
-          handleItems={handleItems}
-        />
+        <ItemsToChoose handleItems={handleItems} />
       </div>
       <Button color='primary' onClick={handleSubmit}>
         Update Request

@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import axios from 'axios'
 import { Link, Redirect } from 'react-router-dom'
 
-const FFLogin = ({ auth, onLogin }) => {
+const Login = ({ auth, onLogin }) => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
 
@@ -23,14 +23,14 @@ const FFLogin = ({ auth, onLogin }) => {
   }
 
   if (auth) {
-    return <Redirect to='/foster-family-dashboard' />
+    return <Redirect to='/my-dashboard' />
   }
 
   return (
     <div className='Login'>
       <center>
         <h3>
-          Log In or <Link to='/foster-family-signup'>Register</Link>
+          Log In or <Link to='/register'>Register</Link>
         </h3>
         <form onSubmit={handleSubmit}>
           <div>
@@ -64,4 +64,4 @@ const FFLogin = ({ auth, onLogin }) => {
   )
 }
 
-export default FFLogin
+export default Login
