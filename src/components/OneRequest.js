@@ -30,7 +30,8 @@ const OneRequest = ({ auth }) => {
 
     const acceptItems = event => {
         const user = {
-            user: 'user'
+            user: 'user',
+            phoneNumber: 'phoneNumber'
         }
         axios
             .post('https://foster-closet.herokuapp.com/api/message/', {
@@ -43,6 +44,10 @@ const OneRequest = ({ auth }) => {
             })
     }
 
+    const offerItems = event => {
+
+    }
+
     return (
         <div className='UpdateRequest'>
             <div>
@@ -53,8 +58,11 @@ const OneRequest = ({ auth }) => {
                             {item.items.map((sub) => (
                                 <li key={sub.id}>
                                     {sub.description}{' '}
-                                    <Button color='primary' onClick={() => acceptItems()}>
+                                    <Button color='primary' onClick={() => offerItems()}>
                                         Donate
+                                    </Button>
+                                    <Button color='primary' onClick={() => acceptItems()}>
+                                        Accept Item
                                     </Button>
                                 </li>
                             ))}

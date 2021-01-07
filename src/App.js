@@ -16,7 +16,6 @@ import Messaging from './components/Messaging'
 import OneRequest from './components/OneRequest'
 import { useLocalStorage, useOnClickOutside } from './hooks'
 
-
 const App = () => {
   const [auth, setAuth] = useLocalStorage('auth_token', null)
   const [open, setOpen] = useState(false)
