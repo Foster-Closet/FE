@@ -31,7 +31,7 @@ const Login = ({ auth, onLogin }) => {
   }
 
   return (
-    <div className='Login pa4 ma5 ba bw2 br3 b--washed-blue bg-lightest-blue'>
+    <div className='Login pa5 ba'>
       <center>
         <h3 className=''>
           Log In or <Link to='/register'>Register</Link>
@@ -60,7 +60,7 @@ const Login = ({ auth, onLogin }) => {
             />
           </div>
           <div>
-            <button className='submitLoginButton ,' type='submit'>
+            <button className='submitLoginButton' type='submit'>
               Log In
             </button>
           </div>
