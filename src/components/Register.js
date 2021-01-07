@@ -39,55 +39,61 @@ const Register = ({ auth, onRegister }) => {
   }
 
   return (
-    <div className='Register'>
+    <div className='Register pa5 ma5 ba bw2 br3 b--washed-blue bg-lightest-blue'>
       <h3>
         Sign Up or <Link to='/login'>Login</Link>
       </h3>
       <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor='name'>Name</label>
+        <div className='w4 ma3'>
+          <label htmlFor='name' />
           <input
             type='text'
+            placeholder='Name'
             id='name'
             required
             value={name}
             onChange={(event) => setName(event.target.value)}
           />
-          <label htmlFor='email'>Email</label>
+          <label htmlFor='email' />
           <input
             type='email'
+            placeholder='Email'
             id='email'
             required
             value={email}
             onChange={(event) => setEmail(event.target.value)}
           />
-          <label htmlFor='phoneNumber'>Phone Number</label>
+          <label htmlFor='phoneNumber' />
           <input
             type='tel'
+            placeholder='Phone Number'
             id='phoneNumber'
             required
             value={phoneNumber}
             onChange={(event) => setPhoneNumber(event.target.value)}
           />
-          <label htmlFor='zipcode'>Zipcode</label>
+          <label htmlFor='zipcode' />
           <input
             type='number'
+            placeholder='Zipcode'
             id='zipcode'
             required
             value={zipcode}
             onChange={(event) => setZipcode(event.target.value)}
           />
-          <label htmlFor='username'>Username</label>
+          <label htmlFor='username' />
           <input
             type='text'
+            placeholder='Username'
             id='username'
             required
             value={username}
             onChange={(event) => setUsername(event.target.value)}
           />
-          <label htmlFor='password'>Password</label>
+          <label htmlFor='password' />
           <input
             type='password'
+            placeholder='Password'
             id='password'
             required
             value={password}
