@@ -1,10 +1,17 @@
 import CreatableSelect from 'react-select/creatable'
-import { useState } from 'react'
+import React from 'react'
+import produce from 'immer'
 
-const ItemsToChoose = () => {
-  const [chosenItems, setChosenItems] = useState([])
-
-  const defaultItems = ['Stroller', 'Diapers'].map((item) => ({
+const ItemsToChoose = ({ chosenItems, setChosenItems }) => {
+  const defaultItems = [
+    'Travel Equipment',
+    'Feeding Equipment',
+    'Toys',
+    'Bedroom',
+    'Bathroom',
+    'Clothes',
+    'Shoes'
+  ].map((item) => ({
     value: item,
     label: item
   }))
@@ -30,24 +37,59 @@ const ItemsToChoose = () => {
   }
 
   const addItem = (item) => {
-    setChosenItems([...chosenItems, { item: item, details: '' }])
+    const newItems = produce(chosenItems, (draftItems) => {
+      draftItems.push({ value: item, details: '' })
+      return draftItems
+    })
+    setChosenItems(newItems)
+  }
+
+  const deleteItem = (itemIdx) => {
+    const newItems = produce(chosenItems, (draftItems) => {
+      draftItems.splice(itemIdx, 1)
+      return draftItems
+    })
+    setChosenItems(newItems)
   }
 
   const updateDetails = (itemIdx, details) => {
-    let newItems = chosenItems.slice(0, itemIdx)
-    newItems.push({ item: chosenItems[itemIdx].item, details: details })
-    newItems = newItems.concat(chosenItems.slice(itemIdx + 1))
+    const newItems = produce(chosenItems, (draftItems) => {
+      draftItems[itemIdx].details = details
+      return draftItems
+    })
     setChosenItems(newItems)
   }
 
   return (
     <div>
+      <h2>Add items to your list</h2>
       <CreatableSelect
         isClearable
         onChange={handleChange}
         onInputChange={handleInputChange}
         options={defaultItems}
       />
+      {chosenItems.length > 0 && (
+        <div>
+          <h2>Items selected</h2>
+          {chosenItems.map((item, idx) => (
+            <div key={idx}>
+              <div>
+                {item.value}
+                <button onClick={() => deleteItem(idx)}>Remove</button>
+              </div>
+              <div>
+                <input
+                  type='text'
+                  value={item.details}
+                  onChange={(e) => updateDetails(idx, e.target.value)}
+                  placeholder='Enter any details'
+                />
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   )
 }
