@@ -64,7 +64,7 @@ const Dashboard = ({ auth, handleUnauthorized }) => {
             className='white flex grow justify-left mh2 mv3 b--solid b--yellow br2'
             key={item.id}
           >
-            <Link to='/OneRequest'>{item.id}</Link>
+            <Link to='/one-request'>List: {item.id}</Link>
             <ul className='mh2 mv3 b--yellow br2'>
               {item.items.map((sub) => (
                 <li

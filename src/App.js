@@ -30,7 +30,7 @@ const App = () => {
         <Router>
           <div>
             <Switch>
-              <Route path='/OneRequest'>
+              <Route path='/one-request'>
                 <OneRequest auth={auth} />
               </Route>
 
