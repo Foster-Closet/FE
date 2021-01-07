@@ -4,12 +4,12 @@ import produce from 'immer'
 
 const ItemsToChoose = ({ chosenItems, setChosenItems }) => {
   const defaultItems = [
-    'Travel Equipment',
-    'Feeding Equipment',
+    'Travel Supplies',
+    'Feeding Supplies',
     'Toys',
-    'Bedroom',
-    'Bathroom',
-    'Clothes',
+    'Bedroom Supplies',
+    'Bathroom Supplies',
+    'Clothing',
     'Shoes'
   ].map((item) => ({
     value: item,

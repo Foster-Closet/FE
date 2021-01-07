@@ -12,7 +12,7 @@ const UpdateRequest = ({ auth }) => {
 
   useEffect(() => {
     axios
-      .get('https://foster-closet.herokuapp.com/api/registry/', {
+      .get(`https://foster-closet.herokuapp.com/api/registry/${id}`, {
         headers: { Authorization: `Token ${auth}` }
       })
       .then((response) => {
