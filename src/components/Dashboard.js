@@ -50,11 +50,12 @@ const Dashboard = ({ auth, handleUnauthorized }) => {
       <h2 className='flex justify-center h2 ma3 pv1 pa1 ph3'>
         Thank You for your support!
       </h2>
-      <Button color='primary' href='/create-request'>
-        Create a Request
-      </Button>
+      <center>
+        <Button color='primary' href='/create-request'>
+          Create a Request
+        </Button>
+      </center>
       <div>
-        <h2>Please donate any requested items.</h2>
         {requestList.map((item) => (
           <div
             className='white flex grow justify-left mh2 mv3 b--solid b--yellow br2'
@@ -73,12 +74,12 @@ const Dashboard = ({ auth, handleUnauthorized }) => {
             </ul>
             <div>
               <Button color='primary' href={`/request/${item.id}/update`}>
-                Update this request
+                Update Request
               </Button>
             </div>
             <div>
               <Button color='secondary' onClick={() => deleteRegistry(item)}>
-                Delete Registry
+                Delete Request
               </Button>
             </div>
           </div>
