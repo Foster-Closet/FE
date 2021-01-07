@@ -31,34 +31,36 @@ const Login = ({ auth, onLogin }) => {
   }
 
   return (
-    <div className='Login'>
+    <div className='Login pa4 ma5 ba bw2 br3 b--washed-blue bg-lightest-blue'>
       <center>
-        <h3>
+        <h3 className=''>
           Log In or <Link to='/register'>Register</Link>
         </h3>
         <form onSubmit={handleSubmit}>
           <div>
-            <label htmlFor='username'>Username</label>
+            <label htmlFor='username' />
             <input
               required
               type='text'
+              placeholder='Enter Username'
               id='username'
               value={username}
               onChange={(event) => setUsername(event.target.value)}
             />
           </div>
           <div>
-            <label htmlFor='password'>Password</label>
+            <label htmlFor='password' />
             <input
               required
               type='password'
+              placeholder='Enter Password'
               id='password'
               value={password}
               onChange={(event) => setPassword(event.target.value)}
             />
           </div>
           <div>
-            <button className='submitLoginButton' type='submit'>
+            <button className='submitLoginButton ,' type='submit'>
               Log In
             </button>
           </div>
