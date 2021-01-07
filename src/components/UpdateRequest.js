@@ -22,7 +22,7 @@ const UpdateRequest = ({ auth }) => {
 
   const handleSubmit = () => {
     const newItems = items.map((item) => {
-      const itemObj = { description: item.value }
+      const itemObj = { description: item.value + ' ' + item.details }
       return itemObj
     })
     axios
@@ -61,18 +61,6 @@ const UpdateRequest = ({ auth }) => {
     return <Redirect to='/my-dashboard' />
   }
 
-  const handleItems = (item) => {
-    if (!items.some((current) => current.id === item.id)) {
-      setItems([...items, item])
-    } else {
-      let itemsAfterRemoval = items
-      itemsAfterRemoval = itemsAfterRemoval.filter(
-        (current) => current.id !== item.id
-      )
-      setItems([...itemsAfterRemoval])
-    }
-  }
-
   return (
     <div className='UpdateRequest'>
       <div>
@@ -95,11 +83,8 @@ const UpdateRequest = ({ auth }) => {
           </div>
         ))}
       </div>
-      <h2>
-        Choose the items you wish to add to this request from the list below
-      </h2>
       <div>
-        <ItemsToChoose handleItems={handleItems} />
+        <ItemsToChoose chosenItems={items} setChosenItems={setItems} />
       </div>
       <Button color='primary' onClick={handleSubmit}>
         Update Request

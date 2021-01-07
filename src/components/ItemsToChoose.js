@@ -1,11 +1,17 @@
 import CreatableSelect from 'react-select/creatable'
-import React, { useState } from 'react'
+import React from 'react'
 import produce from 'immer'
 
-const ItemsToChoose = () => {
-  const [chosenItems, setChosenItems] = useState([])
-
-  const defaultItems = ['Stroller', 'Diapers'].map((item) => ({
+const ItemsToChoose = ({ chosenItems, setChosenItems }) => {
+  const defaultItems = [
+    'Travel Equipment',
+    'Feeding Equipment',
+    'Toys',
+    'Bedroom',
+    'Bathroom',
+    'Clothes',
+    'Shoes'
+  ].map((item) => ({
     value: item,
     label: item
   }))
@@ -56,7 +62,7 @@ const ItemsToChoose = () => {
 
   return (
     <div>
-      <h2>Add an item</h2>
+      <h2>Add items to your list</h2>
       <CreatableSelect
         isClearable
         onChange={handleChange}

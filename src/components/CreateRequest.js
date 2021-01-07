@@ -4,7 +4,7 @@ import { Redirect } from 'react-router-dom'
 import ItemsToChoose from './ItemsToChoose'
 import Button from '@material-ui/core/Button'
 
-const CreateRequest = ({ auth }) => {
+const CreateRequest = ({ auth, chosenItems }) => {
   const [submitted, setSubmitted] = useState(false)
   const [items, setItems] = useState([])
 
@@ -25,27 +25,14 @@ const CreateRequest = ({ auth }) => {
       })
   }
 
-  // const handleItems = (item) => {
-  //   if (!items.some((current) => current.id === item.id)) {
-  //     setItems([...items, item])
-  //   } else {
-  //     let itemsAfterRemoval = items
-  //     itemsAfterRemoval = itemsAfterRemoval.filter(
-  //       (current) => current.id !== item.id
-  //     )
-  //     setItems([...itemsAfterRemoval])
-  //   }
-  // }
-
   if (submitted) {
     return <Redirect to='/my-dashboard' />
   }
 
   return (
     <div className='CreateRequest'>
-      <h2>Create a request for you foster child here</h2>
       <div>
-        <ItemsToChoose handleItems={handleItems} />
+        <ItemsToChoose chosenItems={items} setChosenItems={setItems} />
       </div>
       <Button color='primary' onClick={handleSubmit}>
         Submit Request
