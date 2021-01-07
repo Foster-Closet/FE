@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
-import { Redirect } from 'react-router-dom'
+import { Redirect, Link } from 'react-router-dom'
 import Button from '@material-ui/core/Button'
 
 const Dashboard = ({ auth, handleUnauthorized }) => {
@@ -36,6 +36,9 @@ const Dashboard = ({ auth, handleUnauthorized }) => {
       })
   }
 
+
+
+
   if (!auth) {
     return <Redirect to='/login' />
   }
@@ -60,7 +63,7 @@ const Dashboard = ({ auth, handleUnauthorized }) => {
             className='white flex grow justify-left mh2 mv3 b--solid b--yellow br2'
             key={item.id}
           >
-            Request List # {item.id}
+            <Link to='/OneRequest'>{item.id}</Link>
             <ul className='mh2 mv3 b--yellow br2'>
               {item.items.map((sub) => (
                 <li
@@ -84,7 +87,7 @@ const Dashboard = ({ auth, handleUnauthorized }) => {
           </div>
         ))}
       </div>
-    </div>
+    </div >
   )
 }
 export default Dashboard
