@@ -51,7 +51,8 @@ const Dashboard = ({ auth, handleUnauthorized }) => {
         It takes a village to raise a child!
       </h2>
       <h2 className='flex justify-center h2 ma3 pv1 pa1 ph3'>
-        Thank You for your support!
+        If you are in need of resources for your foster child, please create a
+        list below
       </h2>
       <center>
         <Button color='primary' href='/create-request'>
