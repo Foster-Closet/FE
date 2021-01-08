@@ -29,7 +29,7 @@ const App = () => {
         <Router>
           <div>
             <Switch>
-              <Route path='/request/:id'>
+              <Route path='/request/:id/donate'>
                 <OneRequest auth={auth} />
               </Route>
 

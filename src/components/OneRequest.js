@@ -3,6 +3,7 @@ import axios from 'axios'
 import { Redirect, useParams } from 'react-router-dom'
 import ItemsToChoose from './ItemsToChoose'
 import Button from '@material-ui/core/Button'
+import { User } from 'twilio-chat'
 
 const OneRequest = ({ auth }) => {
     const { id } = useParams()
@@ -13,30 +14,43 @@ const OneRequest = ({ auth }) => {
 
     useEffect(() => {
         axios
-            .get('https://foster-closet.herokuapp.com/api/registry/', {
+            .get(`https://foster-closet.herokuapp.com/api/registry/${id}`, {
                 headers: { Authorization: `Token ${auth}` }
             })
             .then((response) => {
-                setRequestList(response.data)
+                setRequestList(response.data.items)
             })
     }, [auth, id])
 
-    const chooseItems = (subId) => {
-        const items = sendDonorItems;
-        console.log("ITEMS", items);
-        items.push(subId)
-        console.log('ITEMS2', items);
-        setSendDonorItems(items)
+    const chooseItems = (event, subId) => {
+        if (event.target.checked === true) {
+            const items = sendDonorItems;
+            items.push(subId)
+            setSendDonorItems(items)
+        } else {
+            if (sendDonorItems.includes(subId)) {
+                const items = sendDonorItems
+                const index = items.indexOf(subId);
+                if (index > -1) {
+                    items.splice(index, 1);
+                }
+            }
+        }
+        console.log(sendDonorItems)
     }
 
     const handleSubmit = () => {
         axios
             .post('https://foster-closet.herokuapp.com/api/message/',
-                {},
+                { reciever: id, "message": "I can donate these" },
                 { headers: { Authorization: `Token ${auth}` } })
             .then(response => {
-                return <Redirect to='/my-dashboard' />
+                console.log('Successful!', response)
             })
+            .catch(error => {
+                console.log("Unsuccessful!,", error)
+            }
+            )
     }
 
     if (!auth) {
@@ -49,17 +63,13 @@ const OneRequest = ({ auth }) => {
 
     return (
         <div className='UpdateRequest'>
+            <h2>Check Items You Can Provide</h2>
             <div>
                 {requestList.map((item) => (
                     <div key={item.id}>
-                        Requested list {item.id}
+                        {item.description}
                         <ul>
-                            {item.items.map((sub) => (
-                                <li key={sub.id}>
-                                    {sub.description}{' '}
-                                    <input type='checkbox' onClick={() => chooseItems(sub.description)}></input>
-                                </li>
-                            ))}
+                            <input type='checkbox' onClick={(event) => chooseItems(event, item.description)}></input>
                         </ul>
                     </div>
                 ))}

@@ -36,12 +36,10 @@ const Dashboard = ({ auth, handleUnauthorized }) => {
       })
   }
 
-
-
-
   if (!auth) {
     return <Redirect to='/login' />
   }
+
   return (
     <div className='Dashboard pa5 ph10 ba br3 fl'>
       <h1 className='underline flex justify-center mh2 mv3'>
@@ -62,7 +60,7 @@ const Dashboard = ({ auth, handleUnauthorized }) => {
       <div>
         {requestList.map((item) => (
           <div className='mh2 mv3 b--solid br2' key={item.id}>
-            <Link to='/request/:id'> {item.id}</Link>
+            <a href={`/request/${item.id}/donate`}>{item.id}</a>
             <ul className='mh2 mv3 br2'>
               {item.items.map((sub) => (
                 <li key={sub.id}>{sub.description}</li>
