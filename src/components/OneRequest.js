@@ -7,8 +7,9 @@ import Button from '@material-ui/core/Button'
 const OneRequest = ({ auth }) => {
     const { id } = useParams()
     const [requestList, setRequestList] = useState([])
-    const [items, setItems] = useState([])
     const [submitted, setSubmitted] = useState(false)
+    const [sendDonorItems, setSendDonorItems] = useState([])
+    console.log('sendDonorItems state', typeof sendDonorItems, sendDonorItems)
 
     useEffect(() => {
         axios
@@ -20,32 +21,30 @@ const OneRequest = ({ auth }) => {
             })
     }, [auth, id])
 
+    const chooseItems = (subId) => {
+        const items = sendDonorItems;
+        console.log("ITEMS", items);
+        items.push(subId)
+        console.log('ITEMS2', items);
+        setSendDonorItems(items)
+    }
+
+    const handleSubmit = () => {
+        axios
+            .post('https://foster-closet.herokuapp.com/api/message/',
+                {},
+                { headers: { Authorization: `Token ${auth}` } })
+            .then(response => {
+                return <Redirect to='/my-dashboard' />
+            })
+    }
+
     if (!auth) {
         return <Redirect to='/login' />
     }
 
     if (submitted) {
         return <Redirect to='/my-dashboard' />
-    }
-
-    const acceptItems = event => {
-        const user = {
-            user: 'user',
-            phoneNumber: 'phoneNumber'
-        }
-        axios
-            .post('https://foster-closet.herokuapp.com/api/message/', {
-                user
-            })
-            .then(res => {
-                console.log(res);
-                console.log(res.data);
-                return <Redirect to='/dashboard' />
-            })
-    }
-
-    const offerItems = event => {
-
     }
 
     return (
@@ -58,21 +57,16 @@ const OneRequest = ({ auth }) => {
                             {item.items.map((sub) => (
                                 <li key={sub.id}>
                                     {sub.description}{' '}
-                                    <Button color='primary' onClick={() => offerItems()}>
-                                        Donate
-                                    </Button>
-                                    <Button color='primary' onClick={() => acceptItems()}>
-                                        Accept Item
-                                    </Button>
+                                    <input type='checkbox' onClick={() => chooseItems(sub.description)}></input>
                                 </li>
                             ))}
                         </ul>
                     </div>
                 ))}
             </div>
+            <Button color='primary' onClick={handleSubmit}>Submit Donations</Button>
         </div>
     )
 }
-
 
 export default OneRequest

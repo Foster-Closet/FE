@@ -39,12 +39,14 @@ const Register = ({ auth, onRegister }) => {
   }
 
   return (
-    <div className='Register pa5 ma5 ba bw2 br3 b--washed-blue bg-lightest-blue'>
-      <h3>
-        Sign Up or <Link to='/login'>Login</Link>
-      </h3>
+    <div className='Register pa5 ba'>
+      <center>
+        <h3>
+          Sign Up or <Link to='/login'>Login</Link>
+        </h3>
+      </center>
       <form onSubmit={handleSubmit}>
-        <div className='w4 ma3'>
+        <div>
           <label htmlFor='name' />
           <input
             type='text'
@@ -54,6 +56,8 @@ const Register = ({ auth, onRegister }) => {
             value={name}
             onChange={(event) => setName(event.target.value)}
           />
+        </div>
+        <div>
           <label htmlFor='email' />
           <input
             type='email'
@@ -63,6 +67,8 @@ const Register = ({ auth, onRegister }) => {
             value={email}
             onChange={(event) => setEmail(event.target.value)}
           />
+        </div>
+        <div>
           <label htmlFor='phoneNumber' />
           <input
             type='tel'
@@ -72,6 +78,8 @@ const Register = ({ auth, onRegister }) => {
             value={phoneNumber}
             onChange={(event) => setPhoneNumber(event.target.value)}
           />
+        </div>
+        <div>
           <label htmlFor='zipcode' />
           <input
             type='number'
@@ -81,6 +89,8 @@ const Register = ({ auth, onRegister }) => {
             value={zipcode}
             onChange={(event) => setZipcode(event.target.value)}
           />
+        </div>
+        <div>
           <label htmlFor='username' />
           <input
             type='text'
@@ -90,6 +100,8 @@ const Register = ({ auth, onRegister }) => {
             value={username}
             onChange={(event) => setUsername(event.target.value)}
           />
+        </div>
+        <div>
           <label htmlFor='password' />
           <input
             type='password'
@@ -101,9 +113,11 @@ const Register = ({ auth, onRegister }) => {
           />
         </div>
         <div>
-          <button className='submitRegisterButton' type='submit'>
-            Sign Up
-          </button>
+          <center>
+            <button className='submitRegisterButton' type='submit'>
+              Sign Up
+            </button>
+          </center>
         </div>
       </form>
     </div>

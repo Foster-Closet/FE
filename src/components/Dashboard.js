@@ -43,7 +43,7 @@ const Dashboard = ({ auth, handleUnauthorized }) => {
     return <Redirect to='/login' />
   }
   return (
-    <div className='Dashboard pa5 ph10 ba br3 fl w-100 gold bg-lightest-blue'>
+    <div className='Dashboard pa5 ph10 ba br3 fl'>
       <h1 className='underline flex justify-center mh2 mv3'>
         Welcome to The Virtual Foster Closet!
       </h1>
@@ -60,19 +60,11 @@ const Dashboard = ({ auth, handleUnauthorized }) => {
       </center>
       <div>
         {requestList.map((item) => (
-          <div
-            className='white flex grow justify-left mh2 mv3 b--solid b--yellow br2'
-            key={item.id}
-          >
-            <Link to='/one-request'>List: {item.id}</Link>
-            <ul className='mh2 mv3 b--yellow br2'>
+          <div className='mh2 mv3 b--solid br2' key={item.id}>
+            <Link to='/request/:id'> {item.id}</Link>
+            <ul className='mh2 mv3 br2'>
               {item.items.map((sub) => (
-                <li
-                  className='flex justify-left mh2 mv3 b--yellow br2'
-                  key={sub.id}
-                >
-                  {sub.description}
-                </li>
+                <li key={sub.id}>{sub.description}</li>
               ))}
             </ul>
             <div>
