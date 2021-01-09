@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
-import { Redirect, Link } from 'react-router-dom'
+import { Redirect, Link, useParams } from 'react-router-dom'
 import Button from '@material-ui/core/Button'
 
 const Dashboard = ({ auth, handleUnauthorized }) => {
   const [requestList, setRequestList] = useState([])
+  const { id } = useParams
 
   useEffect(() => {
     axios
@@ -35,6 +36,20 @@ const Dashboard = ({ auth, handleUnauthorized }) => {
         )
       })
   }
+  // const handleSubmit = () => {
+  //   axios
+  //     .post('https://foster-closet.herokuapp.com/api/message/',
+  //       { headers: { Authorization: `Token ${auth}` } })
+
+  //     .then(response => {
+  //       console.log("Successful!", response)
+  //     })
+
+  //     .catch(error => {
+  //       console.log("Unsuccessful!,", error)
+  //     }
+  //     )
+  // }
 
   if (!auth) {
     return <Redirect to='/login' />
@@ -79,7 +94,7 @@ const Dashboard = ({ auth, handleUnauthorized }) => {
           </div>
         ))}
       </div>
-    </div >
+    </div>
   )
 }
 export default Dashboard

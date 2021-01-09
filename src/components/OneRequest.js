@@ -3,14 +3,13 @@ import axios from 'axios'
 import { Redirect, useParams } from 'react-router-dom'
 import ItemsToChoose from './ItemsToChoose'
 import Button from '@material-ui/core/Button'
-import { User } from 'twilio-chat'
+
 
 const OneRequest = ({ auth }) => {
     const { id } = useParams()
     const [requestList, setRequestList] = useState([])
     const [submitted, setSubmitted] = useState(false)
     const [sendDonorItems, setSendDonorItems] = useState([])
-    console.log('sendDonorItems state', typeof sendDonorItems, sendDonorItems)
 
     useEffect(() => {
         axios
@@ -42,16 +41,20 @@ const OneRequest = ({ auth }) => {
     const handleSubmit = () => {
         axios
             .post('https://foster-closet.herokuapp.com/api/message/',
-                { reciever: id, "message": "I can donate these" },
-                { headers: { Authorization: `Token ${auth}` } })
+                { headers: { Authorization: `Token ${auth}` } },
+                { "receiver": 20, "message": "Login to view donation: https://rb.gy/lfg6wd" }
+            )
             .then(response => {
-                console.log('Successful!', response)
+                console.log("Successful!", response)
             })
+
             .catch(error => {
                 console.log("Unsuccessful!,", error)
             }
             )
     }
+
+
 
     if (!auth) {
         return <Redirect to='/login' />
