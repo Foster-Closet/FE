@@ -41,8 +41,10 @@ const OneRequest = ({ auth }) => {
     const handleSubmit = () => {
         axios
             .post('https://foster-closet.herokuapp.com/api/message/',
-                { headers: { Authorization: `Token ${auth}` } },
-                { "receiver": 20, "message": "Login to view donation: https://rb.gy/lfg6wd" }
+                {
+                    headers: { Authorization: `Token ${auth}` },
+                    "receiver": 20, "message": "Login to view donation: https://rb.gy/lfg6wd"
+                }
             )
             .then(response => {
                 console.log("Successful!", response)
