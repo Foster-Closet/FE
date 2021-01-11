@@ -1,8 +1,13 @@
 import CreatableSelect from 'react-select/creatable'
-import React from 'react'
+import React, { useState } from 'react'
 import produce from 'immer'
 
-const ItemsToChoose = ({ chosenItems, setChosenItems }) => {
+const ItemsToChoose = ({
+  chosenItems,
+  setChosenItems,
+  setTimeNeeded,
+  timeNeeded
+}) => {
   const defaultItems = [
     'Travel Supplies',
     'Feeding Supplies',
@@ -88,6 +93,43 @@ const ItemsToChoose = ({ chosenItems, setChosenItems }) => {
               </div>
             </div>
           ))}
+          <form>
+            <input
+              type='radio'
+              value='Immediately'
+              checked={timeNeeded === 'Immediately'}
+              onChange={() => setTimeNeeded('Immediately')}
+            />
+            Immediately{' '}
+            <input
+              type='radio'
+              value='End of Day'
+              checked={timeNeeded === 'End of Day'}
+              onChange={() => setTimeNeeded('End of Day')}
+            />
+            End of Day{' '}
+            <input
+              type='radio'
+              value='End of Week'
+              checked={timeNeeded === 'End of Week'}
+              onChange={() => setTimeNeeded('End of Week')}
+            />
+            End of Week{' '}
+            <input
+              type='radio'
+              value='End of Month'
+              checked={timeNeeded === 'End of Month'}
+              onChange={() => setTimeNeeded('End of Month')}
+            />
+            End of Month{' '}
+            <input
+              type='radio'
+              value='Whenever Available'
+              checked={timeNeeded === 'Whenever Available'}
+              onChange={() => setTimeNeeded('Whenever Available')}
+            />
+            Whenever Available
+          </form>
         </div>
       )}
     </div>
