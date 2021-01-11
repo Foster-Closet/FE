@@ -9,6 +9,7 @@ const UpdateRequest = ({ auth }) => {
   const [requestList, setRequestList] = useState([])
   const [items, setItems] = useState([])
   const [submitted, setSubmitted] = useState(false)
+  const [timeNeeded, setTimeNeeded] = useState(null)
 
   useEffect(() => {
     axios
@@ -22,7 +23,9 @@ const UpdateRequest = ({ auth }) => {
 
   const handleSubmit = () => {
     const newItems = items.map((item) => {
-      const itemObj = { description: item.value + ' ' + item.details }
+      const itemObj = {
+        description: item.value + ': ' + item.details + ': ' + timeNeeded
+      }
       return itemObj
     })
     axios
@@ -80,7 +83,12 @@ const UpdateRequest = ({ auth }) => {
         ))}
       </div>
       <div>
-        <ItemsToChoose chosenItems={items} setChosenItems={setItems} />
+        <ItemsToChoose
+          chosenItems={items}
+          setChosenItems={setItems}
+          setTimeNeeded={setTimeNeeded}
+          timeNeeded={timeNeeded}
+        />
       </div>
       <Button color='primary' onClick={handleSubmit}>
         Update Request
