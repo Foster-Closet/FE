@@ -24,7 +24,7 @@ const UpdateRequest = ({ auth }) => {
   const handleSubmit = () => {
     const newItems = items.map((item) => {
       const itemObj = {
-        description: item.value + ' ' + item.details + ' ' + timeNeeded
+        description: item.value + ': ' + item.details + ': ' + timeNeeded
       }
       return itemObj
     })
