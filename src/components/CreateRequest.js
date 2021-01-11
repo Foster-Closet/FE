@@ -63,10 +63,7 @@ const CreateRequest = ({ auth, chosenItems }) => {
         />
       </div>
       <Button color='primary' onClick={handleSubmit}>
-        Save
-      </Button>
-      <Button color='primary' onClick={handleMessageSubmit}>
-        Send to Donors
+        Submit Request
       </Button>
     </div>
   )

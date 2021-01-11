@@ -8,7 +8,7 @@ const AllRequests = ({ auth, handleUnauthorized }) => {
 
     useEffect(() => {
         axios
-            .get('https://foster-closet.herokuapp.com/api/registry/all', {
+            .get('https://foster-closet.herokuapp.com/api/registry/all/', {
                 headers: { Authorization: `Token ${auth}` }
             })
             .then((response) => {
