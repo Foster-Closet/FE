@@ -1,5 +1,5 @@
 import CreatableSelect from 'react-select/creatable'
-import React, { useState } from 'react'
+import React from 'react'
 import produce from 'immer'
 
 const ItemsToChoose = ({
@@ -23,8 +23,6 @@ const ItemsToChoose = ({
 
   const handleChange = (newValue, actionMeta) => {
     console.group('Value Changed')
-    console.log(newValue)
-    console.log(`action: ${actionMeta.action}`)
     console.groupEnd()
     if (
       actionMeta.action === 'select-option' ||
@@ -36,8 +34,6 @@ const ItemsToChoose = ({
 
   const handleInputChange = (newValue, actionMeta) => {
     console.group('Input Changed')
-    console.log(newValue)
-    console.log(`action: ${actionMeta.action}`)
     console.groupEnd()
   }
 
