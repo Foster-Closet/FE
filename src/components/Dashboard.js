@@ -67,27 +67,9 @@ const Dashboard = ({ auth, handleUnauthorized }) => {
   }
 
   return (
-    <div className='Dashboard ma10 pa5 ph10 ba br3 fl w-100 blue bg-washed-blue'>
+    <div className='ma10 pa5 ph10 ba br3 fl w-100 bg-washed-blue'>
       <center>
-        <h1 className='flex justify-center mh2 mv3'>Foster List</h1>
-        <img
-          src='https://burst.shopifycdn.com/photos/happy-boy-swinging-from-parents-arms-on-christmas-morning.jpg'
-          class='w-50 br3'
-          alt='foster family holding paper family cutout'
-        />
-        <h2 className='flex justify-center h2 ma3 pv2 pa1 ph3'>
-          It takes a village to raise a child!
-        </h2>
-        <p className='flex justify-center ma3 pv1 pa5 ph3'>
-          We believe that children in foster care should live as normal a life
-          as possible. We also believe that the community needs to come together
-          to help Foster Parents and Kinship Guardians make that happen. Please
-          consider donating requested items to our local foster families so they
-          can better support the children in their care.
-        </p>
-      </center>
-      <center>
-        <Button variant='outlined' color='primary' href='/create-request'>
+        <Button variant='contained' color='primary' href='/create-request'>
           Create a Request
         </Button>
       </center>
@@ -96,16 +78,9 @@ const Dashboard = ({ auth, handleUnauthorized }) => {
           <Card className={classes.root} key={item.id}>
             <CardActionArea>
               <CardContent>
-                <Typography
-                  className={classes.title}
-                  color='textSecondary'
-                  gutterBottom
-                >
-                  Requested list from: {item.user}
-                </Typography>
                 <Typography variant='body2' component='p'>
                   <div
-                    className='blue flex pa1 mh2 ba b--light-gray b--solid br3 '
+                    className='flex pa1 mh2 ba b--gray b--solid br3'
                     key={item.id}
                   >
                     <ul className='mh1 mv3 br2'>
@@ -122,19 +97,19 @@ const Dashboard = ({ auth, handleUnauthorized }) => {
             <CardActions>
               <Button
                 size='small'
-                variant='outlined'
-                color='secondary'
-                onClick={() => deleteRegistry(item)}
-              >
-                Delete Request
-              </Button>
-              <Button
-                size='small'
-                variant='outlined'
+                variant='contained'
                 color='primary'
                 href={`/request/${item.id}/update`}
               >
                 Update Request
+              </Button>
+              <Button
+                size='small'
+                variant='contained'
+                color='secondary'
+                onClick={() => deleteRegistry(item)}
+              >
+                Delete Request
               </Button>
             </CardActions>
           </Card>
