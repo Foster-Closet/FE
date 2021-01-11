@@ -105,7 +105,7 @@ const Dashboard = ({ auth, handleUnauthorized }) => {
             <CardActionArea>
               <CardContent>
                 <Typography className={classes.title} color='textSecondary' gutterBottom>
-                  Requested list from: {item.user}
+                  <Link to='/request/:id/donate'>{item.user}</Link>
                 </Typography>
                 <Typography variant='body2' component='p'>
 
@@ -141,7 +141,7 @@ const Dashboard = ({ auth, handleUnauthorized }) => {
         ))}
       </div>
 
-    </div>
+    </div >
 
   )
 }

@@ -28,6 +28,26 @@ const CreateRequest = ({ auth, chosenItems }) => {
       })
   }
 
+  const handleMessageSubmit = () => {
+    axios
+      .post('https://foster-closet.herokuapp.com/api/message/',
+        {
+          "receiver": 21, "message": "Foster needs a donation, Login to view: https://rb.gy/lfg6wd"
+        },
+        {
+          headers: { Authorization: `Token ${auth}` }
+        }
+      )
+      .then(response => {
+        console.log("Successful!", response)
+      })
+
+      .catch(error => {
+        console.log("Unsuccessful!,", error)
+      }
+      )
+  }
+
   if (submitted) {
     return <Redirect to='/my-dashboard' />
   }
@@ -43,7 +63,10 @@ const CreateRequest = ({ auth, chosenItems }) => {
         />
       </div>
       <Button color='primary' onClick={handleSubmit}>
-        Submit Request
+        Save
+      </Button>
+      <Button color='primary' onClick={handleMessageSubmit}>
+        Send to Donors
       </Button>
     </div>
   )
