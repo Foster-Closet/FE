@@ -1,5 +1,5 @@
 import CreatableSelect from 'react-select/creatable'
-import React, { useState } from 'react'
+import React from 'react'
 import produce from 'immer'
 
 const ItemsToChoose = ({
