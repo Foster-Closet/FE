@@ -9,20 +9,23 @@ const UpdateRequest = ({ auth }) => {
   const [requestList, setRequestList] = useState([])
   const [items, setItems] = useState([])
   const [submitted, setSubmitted] = useState(false)
+  const [timeNeeded, setTimeNeeded] = useState(null)
 
   useEffect(() => {
     axios
-      .get('https://foster-closet.herokuapp.com/api/registry/', {
+      .get(`https://foster-closet.herokuapp.com/api/registry/${id}`, {
         headers: { Authorization: `Token ${auth}` }
       })
       .then((response) => {
-        setRequestList(response.data)
+        setRequestList(response.data.items)
       })
   }, [auth, id])
 
   const handleSubmit = () => {
     const newItems = items.map((item) => {
-      const itemObj = { description: item.value + ' ' + item.details }
+      const itemObj = {
+        description: item.value + ' ' + item.details + ' ' + timeNeeded
+      }
       return itemObj
     })
     axios
@@ -64,27 +67,28 @@ const UpdateRequest = ({ auth }) => {
   return (
     <div className='UpdateRequest'>
       <div>
+        <h2>Update your requested list below</h2>
         {requestList.map((item) => (
           <div key={item.id}>
-            Requested list {item.id}
             <ul>
-              {item.items.map((sub) => (
-                <li key={sub.id}>
-                  {sub.description}{' '}
-                  <Button
-                    color='secondary'
-                    onClick={() => deleteItemsInRegistry(sub)}
-                  >
-                    Delete
-                  </Button>
-                </li>
-              ))}
+              {item.description}
+              <Button
+                color='secondary'
+                onClick={() => deleteItemsInRegistry(item)}
+              >
+                Delete
+              </Button>
             </ul>
           </div>
         ))}
       </div>
       <div>
-        <ItemsToChoose chosenItems={items} setChosenItems={setItems} />
+        <ItemsToChoose
+          chosenItems={items}
+          setChosenItems={setItems}
+          setTimeNeeded={setTimeNeeded}
+          timeNeeded={timeNeeded}
+        />
       </div>
       <Button color='primary' onClick={handleSubmit}>
         Update Request
