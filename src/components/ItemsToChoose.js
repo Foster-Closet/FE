@@ -8,23 +8,8 @@ const ItemsToChoose = ({
   setTimeNeeded,
   timeNeeded
 }) => {
-  const defaultItems = [
-    'Travel Supplies: ',
-    'Feeding Supplies: ',
-    'Toys:',
-    'Bedroom Supplies: ',
-    'Bathroom Supplies: ',
-    'Clothing: ',
-    'Shoes: '
-  ].map((item) => ({
-    value: item,
-    label: item
-  }))
-
   const handleChange = (newValue, actionMeta) => {
     console.group('Value Changed')
-    console.log(newValue)
-    console.log(`action: ${actionMeta.action}`)
     console.groupEnd()
     if (
       actionMeta.action === 'select-option' ||
@@ -36,8 +21,6 @@ const ItemsToChoose = ({
 
   const handleInputChange = (newValue, actionMeta) => {
     console.group('Input Changed')
-    console.log(newValue)
-    console.log(`action: ${actionMeta.action}`)
     console.groupEnd()
   }
 
@@ -72,7 +55,7 @@ const ItemsToChoose = ({
         isClearable
         onChange={handleChange}
         onInputChange={handleInputChange}
-        options={defaultItems}
+        placeholder='Type here'
       />
       {chosenItems.length > 0 && (
         <div>
@@ -100,35 +83,7 @@ const ItemsToChoose = ({
               checked={timeNeeded === 'Immediately'}
               onChange={() => setTimeNeeded('Immediately')}
             />
-            Immediately{' '}
-            <input
-              type='radio'
-              value='End of Day'
-              checked={timeNeeded === 'End of Day'}
-              onChange={() => setTimeNeeded('End of Day')}
-            />
-            End of Day{' '}
-            <input
-              type='radio'
-              value='End of Week'
-              checked={timeNeeded === 'End of Week'}
-              onChange={() => setTimeNeeded('End of Week')}
-            />
-            End of Week{' '}
-            <input
-              type='radio'
-              value='End of Month'
-              checked={timeNeeded === 'End of Month'}
-              onChange={() => setTimeNeeded('End of Month')}
-            />
-            End of Month{' '}
-            <input
-              type='radio'
-              value='Whenever Available'
-              checked={timeNeeded === 'Whenever Available'}
-              onChange={() => setTimeNeeded('Whenever Available')}
-            />
-            Whenever Available
+            I need this immediately
           </form>
         </div>
       )}

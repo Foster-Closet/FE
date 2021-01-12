@@ -7,7 +7,6 @@ import Login from './components/Login'
 import Dashboard from './components/Dashboard'
 import LandingPage from './components/LandingPage'
 import { ThemeProvider } from 'styled-components'
-import { GlobalStyles } from './globals'
 import { theme } from './theme'
 import Burger from './components/Burger'
 import Menu from './components/Menu'
@@ -24,54 +23,40 @@ const App = () => {
 
   return (
     <ThemeProvider theme={theme}>
-      <>
-        <GlobalStyles />
-        <Router>
-          <div>
-            <Switch>
-              <Route path='/all-requests'>
-                <AllRequests auth={auth} />
-              </Route>
+      <Router>
+        <div>
+          <Switch>
+            <Route path='/request/:id/update'>
+              <UpdateRequest auth={auth} />
+            </Route>
 
-              <Route path='/request/:id/donate'>
-                <OneRequest auth={auth} />
-              </Route>
+            <Route path='/register'>
+              <Register auth={auth} onRegister={setAuth} />
+            </Route>
 
-              <Route path='/request/:id/update'>
-                <UpdateRequest auth={auth} />
-              </Route>
+            <Route path='/login'>
+              <Login auth={auth} onLogin={setAuth} />
+            </Route>
 
-              <Route path='/register'>
-                <Register auth={auth} onRegister={setAuth} />
-              </Route>
+            <Route path='/my-dashboard'>
+              <Dashboard auth={auth} handleUnauthorized={() => setAuth(null)} />
+            </Route>
 
-              <Route path='/login'>
-                <Login auth={auth} onLogin={setAuth} />
-              </Route>
+            <Route path='/create-request'>
+              <CreateRequest auth={auth} />
+            </Route>
 
-              <Route path='/my-dashboard'>
-                <Dashboard
-                  auth={auth}
-                  handleUnauthorized={() => setAuth(null)}
-                />
-              </Route>
+            <Route exact path='/'>
+              <LandingPage />
+            </Route>
+          </Switch>
 
-              <Route path='/create-request'>
-                <CreateRequest auth={auth} />
-              </Route>
-
-              <Route exact path='/'>
-                <LandingPage />
-              </Route>
-            </Switch>
-
-            <div ref={node}>
-              <Burger open={open} setOpen={setOpen} />
-              <Menu auth={auth} open={open} setOpen={setOpen} />
-            </div>
+          <div ref={node}>
+            <Burger open={open} setOpen={setOpen} />
+            <Menu auth={auth} open={open} setOpen={setOpen} />
           </div>
-        </Router>
-      </>
+        </div>
+      </Router>
     </ThemeProvider>
   )
 }
