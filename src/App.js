@@ -26,6 +26,14 @@ const App = () => {
       <Router>
         <div>
           <Switch>
+            <Route path='/all-requests'>
+              <AllRequests auth={auth} />
+            </Route>
+
+            <Route path='/request/:id'>
+              <OneRequest auth={auth} />
+            </Route>
+
             <Route path='/request/:id/update'>
               <UpdateRequest auth={auth} />
             </Route>

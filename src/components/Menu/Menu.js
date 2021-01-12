@@ -34,10 +34,6 @@ const Menu = ({ open, auth }) => {
           <span aria-label='all requests' />
           All Requests
         </Link>
-        <Link to='/messaging'>
-          <span aria-label='messaging' />
-          Messaging
-        </Link>
         <Link onClick={() => handleLogout()}>
           <span aria-label='logout' />
           Logout

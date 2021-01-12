@@ -29,7 +29,7 @@ const AllRequests = ({ auth, handleUnauthorized }) => {
             <div>
                 {requestList.map((item) => (
                     <div className='mh2 mv3 b--solid br2' key={item.id}>
-                        <a href={`/request/${item.id}/donate`}>{item.id}</a>
+                        <a href={`/request/${item.id}`}>{item.id}</a>
                         <ul className='mh2 mv3 br2'>
                             {item.items.map((sub) => (
                                 <li key={sub.id}>{sub.description}</li>

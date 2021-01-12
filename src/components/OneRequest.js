@@ -42,7 +42,7 @@ const OneRequest = ({ auth }) => {
         axios
             .post('https://foster-closet.herokuapp.com/api/message/',
                 {
-                    "receiver": 20, "message": "Login to view donation: https://rb.gy/lfg6wd"
+                    "receiver": 20, "message": "A donor wants to help with your requests! Please text 919-622-5322 to start your conversation"
                 },
                 {
                     headers: { Authorization: `Token ${auth}` }
