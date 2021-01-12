@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import { Redirect, useParams } from 'react-router-dom'
-import ItemsToChoose from './ItemsToChoose'
 import Button from '@material-ui/core/Button'
-
 
 const OneRequest = ({ auth }) => {
     const { id } = useParams()
@@ -35,7 +33,6 @@ const OneRequest = ({ auth }) => {
                 }
             }
         }
-        console.log(sendDonorItems)
     }
 
     const handleSubmit = () => {
@@ -49,11 +46,11 @@ const OneRequest = ({ auth }) => {
                 }
             )
             .then(response => {
-                console.log("Successful!", response)
+                setSubmitted(true)
             })
 
             .catch(error => {
-                console.log("Unsuccessful!,", error)
+                console.log(error)
             }
             )
     }
