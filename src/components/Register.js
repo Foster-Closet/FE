@@ -39,87 +39,85 @@ const Register = ({ auth, onRegister }) => {
   }
 
   return (
-    <div className='Register pa5 ba'>
+    <div>
       <center>
-        <h3>
+        <h3 className='pa1'>
           Sign Up or <Link to='/login'>Login</Link>
         </h3>
-      </center>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor='name' />
-          <input
-            type='text'
-            placeholder='Name'
-            id='name'
-            required
-            value={name}
-            onChange={(event) => setName(event.target.value)}
-          />
-        </div>
-        <div>
-          <label htmlFor='email' />
-          <input
-            type='email'
-            placeholder='Email'
-            id='email'
-            required
-            value={email}
-            onChange={(event) => setEmail(event.target.value)}
-          />
-        </div>
-        <div>
-          <label htmlFor='phoneNumber' />
-          <input
-            type='tel'
-            placeholder='Phone Number'
-            id='phoneNumber'
-            required
-            value={phoneNumber}
-            onChange={(event) => setPhoneNumber(event.target.value)}
-          />
-        </div>
-        <div>
-          <label htmlFor='zipcode' />
-          <input
-            type='number'
-            placeholder='Zipcode'
-            id='zipcode'
-            required
-            value={zipcode}
-            onChange={(event) => setZipcode(event.target.value)}
-          />
-        </div>
-        <div>
-          <label htmlFor='username' />
-          <input
-            type='text'
-            placeholder='Username'
-            id='username'
-            required
-            value={username}
-            onChange={(event) => setUsername(event.target.value)}
-          />
-        </div>
-        <div>
-          <label htmlFor='password' />
-          <input
-            type='password'
-            placeholder='Password'
-            id='password'
-            required
-            value={password}
-            onChange={(event) => setPassword(event.target.value)}
-          />
-        </div>
-        <div>
-          <center>
-            <button className='submitRegisterButton' type='submit'>
+        <form onSubmit={handleSubmit}>
+          <div className='pa1'>
+            <label htmlFor='name' />
+            <input
+              type='text'
+              placeholder='Name'
+              id='name'
+              required
+              value={name}
+              onChange={(event) => setName(event.target.value)}
+            />
+          </div>
+          <div className='pa1'>
+            <label htmlFor='email' />
+            <input
+              type='email'
+              placeholder='Email'
+              id='email'
+              required
+              value={email}
+              onChange={(event) => setEmail(event.target.value)}
+            />
+          </div>
+          <div className='pa1'>
+            <label htmlFor='phoneNumber' />
+            <input
+              type='tel'
+              placeholder='Phone Number'
+              id='phoneNumber'
+              required
+              value={phoneNumber}
+              onChange={(event) => setPhoneNumber(event.target.value)}
+            />
+          </div>
+          <div className='pa1'>
+            <label htmlFor='zipcode' />
+            <input
+              type='number'
+              placeholder='Zipcode'
+              id='zipcode'
+              required
+              value={zipcode}
+              onChange={(event) => setZipcode(event.target.value)}
+            />
+          </div>
+          <div className='pa1'>
+            <label htmlFor='username' />
+            <input
+              type='text'
+              placeholder='Username'
+              id='username'
+              required
+              value={username}
+              onChange={(event) => setUsername(event.target.value)}
+            />
+          </div>
+          <div className='pa1'>
+            <label htmlFor='password' />
+            <input
+              type='password'
+              placeholder='Password'
+              id='password'
+              required
+              value={password}
+              onChange={(event) => setPassword(event.target.value)}
+            />
+          </div>
+          <div className='pa1'>
+            <button type='submit'>
               Sign Up
             </button>
-          </center>
-        </div>
-      </form>
+          </div>
+        </form>
+      </center>
     </div>
   )
 }

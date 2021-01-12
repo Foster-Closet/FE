@@ -13,15 +13,45 @@ import Menu from './components/Menu'
 import UpdateRequest from './components/UpdateRequest'
 import Messaging from './components/Messaging'
 import { useLocalStorage, useOnClickOutside } from './hooks'
+import AppBar from '@material-ui/core/AppBar'
+import Toolbar from '@material-ui/core/Toolbar'
+import Typography from '@material-ui/core/Typography'
+import { makeStyles } from '@material-ui/core/styles'
 
 const App = () => {
   const [auth, setAuth] = useLocalStorage('auth_token', null)
   const [open, setOpen] = useState(false)
+
   const node = useRef()
+
   useOnClickOutside(node, () => setOpen(false))
+
+  const useStyles = makeStyles((theme) => ({
+    root: {
+      flexGrow: 1
+    },
+    menuButton: {
+      marginRight: theme.spacing()
+    },
+    title: {
+      flexGrow: 1,
+      textAlign: 'center'
+    }
+  }))
+
+  const classes = useStyles()
 
   return (
     <ThemeProvider theme={theme}>
+      <div>
+        <AppBar position='static'>
+          <Toolbar>
+            <Typography variant='h5' className={classes.title}>
+              Virtual Foster Closet
+            </Typography>
+          </Toolbar>
+        </AppBar>
+      </div>
       <Router>
         <div>
           <Switch>
