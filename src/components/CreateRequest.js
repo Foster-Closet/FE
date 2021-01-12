@@ -7,12 +7,11 @@ import Button from '@material-ui/core/Button'
 const CreateRequest = ({ auth, chosenItems }) => {
   const [submitted, setSubmitted] = useState(false)
   const [items, setItems] = useState([])
-  const [timeNeeded, setTimeNeeded] = useState('')
 
   const handleSubmit = () => {
     const newItems = items.map((item) => {
       const itemObj = {
-        description: item.value + ' ' + item.details + ' ' + timeNeeded
+        description: item.value + '-' + item.details
       }
       return itemObj
     })
@@ -33,14 +32,9 @@ const CreateRequest = ({ auth, chosenItems }) => {
   }
 
   return (
-    <div className='CreateRequest'>
+    <div>
       <div>
-        <ItemsToChoose
-          chosenItems={items}
-          setChosenItems={setItems}
-          setTimeNeeded={setTimeNeeded}
-          timeNeeded={timeNeeded}
-        />
+        <ItemsToChoose chosenItems={items} setChosenItems={setItems} />
       </div>
       <Button color='primary' onClick={handleSubmit}>
         Submit Request

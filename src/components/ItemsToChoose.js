@@ -2,12 +2,7 @@ import CreatableSelect from 'react-select/creatable'
 import React from 'react'
 import produce from 'immer'
 
-const ItemsToChoose = ({
-  chosenItems,
-  setChosenItems,
-  setTimeNeeded,
-  timeNeeded
-}) => {
+const ItemsToChoose = ({ chosenItems, setChosenItems }) => {
   const handleChange = (newValue, actionMeta) => {
     console.group('Value Changed')
     console.groupEnd()
@@ -76,15 +71,6 @@ const ItemsToChoose = ({
               </div>
             </div>
           ))}
-          <form>
-            <input
-              type='radio'
-              value='Immediately'
-              checked={timeNeeded === 'Need Immediately'}
-              onChange={() => setTimeNeeded('Immediately')}
-            />
-            I need this immediately
-          </form>
         </div>
       )}
     </div>

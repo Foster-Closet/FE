@@ -31,28 +31,31 @@ const OneRequest = ({ auth }) => {
         if (index > -1) {
           items.splice(index, 1)
         }
+      }
     }
   }
 
-    const handleSubmit = () => {
-        axios
-            .post('https://foster-closet.herokuapp.com/api/message/',
-                {
-                    "receiver": 20, "message": "A donor wants to help with your requests! Please text 919-622-5322 to start your conversation"
-                },
-                {
-                    headers: { Authorization: `Token ${auth}` }
-                }
-            )
-            .then(response => {
-                setSubmitted(true)
-            })
+  const handleSubmit = () => {
+    axios
+      .post(
+        'https://foster-closet.herokuapp.com/api/message/',
+        {
+          receiver: 20,
+          message:
+            'A donor wants to help with your requests! Please text 919-622-5322 to start your conversation'
+        },
+        {
+          headers: { Authorization: `Token ${auth}` }
+        }
+      )
+      .then((response) => {
+        setSubmitted(true)
+      })
 
-            .catch(error => {
-                console.log(error)
-            }
-            )
-    }
+      .catch((error) => {
+        console.log(error)
+      })
+  }
 
   if (!auth) {
     return <Redirect to='/login' />
@@ -73,7 +76,7 @@ const OneRequest = ({ auth }) => {
               <input
                 type='checkbox'
                 onClick={(event) => chooseItems(event, item.description)}
-              ></input>
+              />
             </ul>
           </div>
         ))}
