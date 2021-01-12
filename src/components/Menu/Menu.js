@@ -30,9 +30,9 @@ const Menu = ({ open, auth }) => {
           <span aria-label='my dashboard' />
           My Dashboard
         </Link>
-        <Link to='/messaging'>
-          <span aria-label='messaging' />
-          Messaging
+        <Link to='/all-requests'>
+          <span aria-label='all requests' />
+          All Requests
         </Link>
         <Link onClick={() => handleLogout()}>
           <span aria-label='logout' />

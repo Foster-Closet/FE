@@ -11,7 +11,8 @@ import { theme } from './theme'
 import Burger from './components/Burger'
 import Menu from './components/Menu'
 import UpdateRequest from './components/UpdateRequest'
-import Messaging from './components/Messaging'
+import OneRequest from './components/OneRequest'
+import AllRequests from './components/AllRequests'
 import { useLocalStorage, useOnClickOutside } from './hooks'
 
 const App = () => {
@@ -25,6 +26,14 @@ const App = () => {
       <Router>
         <div>
           <Switch>
+            <Route path='/all-requests'>
+              <AllRequests auth={auth} />
+            </Route>
+
+            <Route path='/request/:id'>
+              <OneRequest auth={auth} />
+            </Route>
+
             <Route path='/request/:id/update'>
               <UpdateRequest auth={auth} />
             </Route>
@@ -43,10 +52,6 @@ const App = () => {
 
             <Route path='/create-request'>
               <CreateRequest auth={auth} />
-            </Route>
-
-            <Route path='/messaging'>
-              <Messaging auth={auth} />
             </Route>
 
             <Route exact path='/'>
