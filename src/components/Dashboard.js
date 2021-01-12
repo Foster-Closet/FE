@@ -125,4 +125,5 @@ const Dashboard = ({ auth, handleUnauthorized }) => {
     </div>
   )
 }
+
 export default Dashboard

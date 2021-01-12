@@ -86,7 +86,23 @@ const UpdateRequest = ({ auth }) => {
   }
 
   return (
-    <div className='UpdateRequest pa2'>
+    <div>
+      <div>
+        <h2>Update your requested list below</h2>
+        {requestList.map((item) => (
+          <div key={item.id}>
+            <ul>
+              {item.description}
+              <Button
+                color='secondary'
+                onClick={() => deleteItemsInRegistry(item)}
+              >
+                Delete
+              </Button>
+            </ul>
+          </div>
+        ))}
+      </div>
       <div>
         <ItemsToChoose
           chosenItems={items}

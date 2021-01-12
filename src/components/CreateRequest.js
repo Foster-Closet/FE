@@ -11,12 +11,11 @@ import { makeStyles } from '@material-ui/core/styles'
 const CreateRequest = ({ auth, chosenItems }) => {
   const [submitted, setSubmitted] = useState(false)
   const [items, setItems] = useState([])
-  const [timeNeeded, setTimeNeeded] = useState('')
 
   const handleSubmit = () => {
     const newItems = items.map((item) => {
       const itemObj = {
-        description: item.value + ' ' + item.details + ' ' + timeNeeded
+        description: item.value + '-' + item.details
       }
       return itemObj
     })
@@ -63,8 +62,6 @@ const CreateRequest = ({ auth, chosenItems }) => {
               <ItemsToChoose
                 chosenItems={items}
                 setChosenItems={setItems}
-                setTimeNeeded={setTimeNeeded}
-                timeNeeded={timeNeeded}
               />
             </Typography>
           </CardContent>

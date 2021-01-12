@@ -7,12 +7,7 @@ import CardContent from '@material-ui/core/CardContent'
 import Typography from '@material-ui/core/Typography'
 import { makeStyles } from '@material-ui/core/styles'
 
-const ItemsToChoose = ({
-  chosenItems,
-  setChosenItems,
-  setTimeNeeded,
-  timeNeeded
-}) => {
+const ItemsToChoose = ({ chosenItems, setChosenItems }) => {
   const handleChange = (newValue, actionMeta) => {
     console.group('Value Changed')
     console.groupEnd()
@@ -109,15 +104,6 @@ const ItemsToChoose = ({
               </CardContent>
             </Card>
           ))}
-          <form>
-            <input
-              type='radio'
-              value='Immediately'
-              checked={timeNeeded === 'Immediately'}
-              onChange={() => setTimeNeeded('Immediately')}
-            />
-            I need this immediately
-          </form>
         </div>
       )}
     </div>
