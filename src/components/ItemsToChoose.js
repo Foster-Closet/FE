@@ -80,7 +80,7 @@ const ItemsToChoose = ({
             <input
               type='radio'
               value='Immediately'
-              checked={timeNeeded === 'Immediately'}
+              checked={timeNeeded === 'Need Immediately'}
               onChange={() => setTimeNeeded('Immediately')}
             />
             I need this immediately
