@@ -3,7 +3,10 @@ import axios from 'axios'
 import { Redirect, useParams } from 'react-router-dom'
 import ItemsToChoose from './ItemsToChoose'
 import Button from '@material-ui/core/Button'
-
+import Card from '@material-ui/core/Card'
+import CardContent from '@material-ui/core/CardContent'
+import Typography from '@material-ui/core/Typography'
+import { makeStyles } from '@material-ui/core/styles'
 const UpdateRequest = ({ auth }) => {
   const { id } = useParams()
   const [requestList, setRequestList] = useState([])
@@ -55,7 +58,25 @@ const UpdateRequest = ({ auth }) => {
         )
       })
   }
+  const useStyles = makeStyles({
+    root: {
+      minWidth: 275,
+      marginBottom: 20
+    },
+    bullet: {
+      display: 'inline-block',
+      margin: '0 2px',
+      transform: 'scale(0.8)'
+    },
+    title: {
+      fontSize: 14
+    },
+    pos: {
+      marginBottom: 12
+    }
+  })
 
+  const classes = useStyles()
   if (!auth) {
     return <Redirect to='/login' />
   }
@@ -90,9 +111,38 @@ const UpdateRequest = ({ auth }) => {
           timeNeeded={timeNeeded}
         />
       </div>
-      <Button color='primary' onClick={handleSubmit}>
-        Update Request
+      <Button
+        size='small'
+        variant='contained'
+        color='primary'
+        onClick={handleSubmit}
+      >
+        Add item
       </Button>
+      <div>
+        <h2>Remove items from my list</h2>
+        {requestList.map((item) => (
+          <Card className={classes.root} key={item.id}>
+            <CardContent>
+              <Typography variant='body2' component='p'>
+                <div key={item.id}>
+                  <ul>
+                    {item.description}
+                    <Button
+                      color='secondary'
+                      onClick={() => deleteItemsInRegistry(item)}
+                    >
+                      Delete
+                    </Button>
+                  </ul>
+
+                </div>
+              </Typography>
+            </CardContent>
+          </Card>
+        ))}
+      </div>
+
     </div>
   )
 }

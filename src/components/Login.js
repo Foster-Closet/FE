@@ -31,13 +31,13 @@ const Login = ({ auth, onLogin }) => {
   }
 
   return (
-    <div className='pa5 ba'>
+    <div>
       <center>
-        <h3 className=''>
+        <h3 className='pa1'>
           Log In or <Link to='/register'>Register</Link>
         </h3>
         <form onSubmit={handleSubmit}>
-          <div>
+          <div className='pa1'>
             <label htmlFor='username' />
             <input
               required
@@ -48,7 +48,7 @@ const Login = ({ auth, onLogin }) => {
               onChange={(event) => setUsername(event.target.value)}
             />
           </div>
-          <div>
+          <div className='pa1'>
             <label htmlFor='password' />
             <input
               required
@@ -59,8 +59,10 @@ const Login = ({ auth, onLogin }) => {
               onChange={(event) => setPassword(event.target.value)}
             />
           </div>
-          <div>
-            <button type='submit'>Log In</button>
+          <div className='pa1'>
+            <button type='submit'>
+              Log In
+            </button>
           </div>
         </form>
       </center>
