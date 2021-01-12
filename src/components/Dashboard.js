@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
-import { Redirect, Link, useParams } from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 import Button from '@material-ui/core/Button'
 import Card from '@material-ui/core/Card'
 import CardContent from '@material-ui/core/CardContent'
@@ -11,7 +11,6 @@ import CardActions from '@material-ui/core/CardActions'
 
 const Dashboard = ({ auth, handleUnauthorized }) => {
   const [requestList, setRequestList] = useState([])
-  const { id } = useParams
 
   useEffect(() => {
     axios
@@ -119,4 +118,5 @@ const Dashboard = ({ auth, handleUnauthorized }) => {
     </div>
   )
 }
+
 export default Dashboard

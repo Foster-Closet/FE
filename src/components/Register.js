@@ -39,7 +39,7 @@ const Register = ({ auth, onRegister }) => {
   }
 
   return (
-    <div className='Register pa5 ba'>
+    <div className='pa5 ba'>
       <center>
         <h3>
           Sign Up or <Link to='/login'>Login</Link>
@@ -114,9 +114,7 @@ const Register = ({ auth, onRegister }) => {
         </div>
         <div>
           <center>
-            <button className='submitRegisterButton' type='submit'>
-              Sign Up
-            </button>
+            <button type='submit'>Sign Up</button>
           </center>
         </div>
       </form>

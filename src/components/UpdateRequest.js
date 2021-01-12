@@ -65,7 +65,7 @@ const UpdateRequest = ({ auth }) => {
   }
 
   return (
-    <div className='UpdateRequest'>
+    <div>
       <div>
         <h2>Update your requested list below</h2>
         {requestList.map((item) => (
