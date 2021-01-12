@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from 'react'
-import { useParams } from 'react-router-dom'
 import axios from 'axios'
 
 const AllRequests = ({ auth, handleUnauthorized }) => {
     const [requestList, setRequestList] = useState([])
-    const { id } = useParams
 
     useEffect(() => {
         axios

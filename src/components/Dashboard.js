@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
-import { Redirect, Link, useParams } from 'react-router-dom'
+import { Redirect, useParams } from 'react-router-dom'
 import Button from '@material-ui/core/Button'
 import Card from '@material-ui/core/Card'
 import CardContent from '@material-ui/core/CardContent'
@@ -40,7 +40,8 @@ const Dashboard = ({ auth, handleUnauthorized }) => {
             (currentRegistry) => currentRegistry.id !== registryToDelete.id
           )
         )
-      })
+      }
+      )
   }
 
   const useStyles = makeStyles({
@@ -119,4 +120,5 @@ const Dashboard = ({ auth, handleUnauthorized }) => {
     </div>
   )
 }
+
 export default Dashboard
