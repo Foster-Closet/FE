@@ -58,8 +58,6 @@ const OneRequest = ({ auth }) => {
             )
     }
 
-
-
     if (!auth) {
         return <Redirect to='/login' />
     }

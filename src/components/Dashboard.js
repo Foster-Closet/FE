@@ -42,20 +42,6 @@ const Dashboard = ({ auth, handleUnauthorized }) => {
         )
       })
   }
-  const handleSubmit = () => {
-    axios
-      .post('https://foster-closet.herokuapp.com/api/message/',
-        { headers: { Authorization: `Token ${auth}` } })
-
-      .then(response => {
-        console.log("Successful!", response)
-      })
-
-      .catch(error => {
-        console.log("Unsuccessful!,", error)
-      }
-      )
-  }
 
   const useStyles = makeStyles({
     root: {

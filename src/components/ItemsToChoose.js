@@ -11,7 +11,7 @@ const ItemsToChoose = ({
   const defaultItems = [
     'Travel Supplies: ',
     'Feeding Supplies: ',
-    'Toys: ',
+    'Toys:',
     'Bedroom Supplies: ',
     'Bathroom Supplies: ',
     'Clothing: ',
