@@ -56,31 +56,31 @@ const App = () => {
       <Router>
         <div>
           <Switch>
-            <Route path='/all-requests'>
+            <Route exact path='/all-requests'>
               <AllRequests auth={auth} />
             </Route>
 
-            <Route path='/request/:id'>
+            <Route exact path='/request/:id'>
               <OneRequest auth={auth} />
             </Route>
 
-            <Route path='/request/:id/update'>
+            <Route exact path='/request/:id/update'>
               <UpdateRequest auth={auth} />
             </Route>
 
-            <Route path='/register'>
+            <Route exact path='/register'>
               <Register auth={auth} onRegister={setAuth} />
             </Route>
 
-            <Route path='/login'>
+            <Route exact path='/login'>
               <Login auth={auth} onLogin={setAuth} />
             </Route>
 
-            <Route path='/my-dashboard'>
+            <Route exact path='/my-dashboard'>
               <Dashboard auth={auth} handleUnauthorized={() => setAuth(null)} />
             </Route>
 
-            <Route path='/create-request'>
+            <Route exact path='/create-request'>
               <CreateRequest auth={auth} />
             </Route>
 

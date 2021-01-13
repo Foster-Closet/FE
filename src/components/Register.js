@@ -41,7 +41,7 @@ const Register = ({ auth, onRegister }) => {
   return (
     <div>
       <center>
-        <h3 className='pa1'>
+        <h3 className='f3 b pa1'>
           Sign Up or <Link to='/login'>Login</Link>
         </h3>
         <form onSubmit={handleSubmit}>

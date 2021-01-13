@@ -68,45 +68,49 @@ const ItemsToChoose = ({ chosenItems, setChosenItems }) => {
   const classes = useStyles()
 
   return (
-    <div className='pa4'>
-      <CreatableSelect
-        isClearable
-        onChange={handleChange}
-        onInputChange={handleInputChange}
-        placeholder='Add items to my request list'
-      />
-      {chosenItems.length > 0 && (
-        <div className='pa1'>
-          {chosenItems.map((item, idx) => (
-            <Card className={classes.root} key={item.value}>
-              <CardContent>
-                <Typography variant='body2' component='p'>
-                  <div key={idx}>
-                    <div>
-                      {item.value}
-                      <Button
-                        color='secondary'
-                        onClick={() => deleteItem(idx)}
-                      >Delete Item
-                      </Button>
-                    </div>
+    <center>
+      <div className='pa4'>
+        <CreatableSelect
+          isClearable
+          onChange={handleChange}
+          onInputChange={handleInputChange}
+          placeholder='Ex: 3T Onsie, Rear Facing Car Seat, Changing Table'
+        />
+        {chosenItems.length > 0 && (
+          <div className='pa1'>
+            {chosenItems.map((item, idx) => (
+              <Card className={classes.root} key={item.value}>
+                <CardContent>
+                  <Typography variant='body2' component='p'>
+                    <div key={idx}>
+                      <div>
+                        <h3 className='f4'>
+                          {item.value}
+                        </h3>
+                        <Button
+                          color='secondary'
+                          onClick={() => deleteItem(idx)}
+                        >Remove
+                        </Button>
+                      </div>
 
-                    <div>
-                      <input
-                        type='text'
-                        value={item.details}
-                        onChange={(e) => updateDetails(idx, e.target.value)}
-                        placeholder='Enter any details'
-                      />
+                      <div>
+                        <input
+                          type='text'
+                          value={item.details}
+                          onChange={(e) => updateDetails(idx, e.target.value)}
+                          placeholder='Enter any details'
+                        />
+                      </div>
                     </div>
-                  </div>
-                </Typography>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
-      )}
-    </div>
+                  </Typography>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        )}
+      </div>
+    </center>
   )
 }
 

@@ -12,7 +12,6 @@ const UpdateRequest = ({ auth }) => {
   const [requestList, setRequestList] = useState([])
   const [items, setItems] = useState([])
   const [submitted, setSubmitted] = useState(false)
-  const [timeNeeded, setTimeNeeded] = useState(null)
 
   useEffect(() => {
     axios
@@ -27,7 +26,7 @@ const UpdateRequest = ({ auth }) => {
   const handleSubmit = () => {
     const newItems = items.map((item) => {
       const itemObj = {
-        description: item.value + ' ' + item.details + ' ' + timeNeeded
+        description: item.value + ' ' + item.details
       }
       return itemObj
     })
@@ -86,64 +85,55 @@ const UpdateRequest = ({ auth }) => {
   }
 
   return (
-    <div>
-      <div>
-        <h2>Update your requested list below</h2>
-        {requestList.map((item) => (
-          <div key={item.id}>
-            <ul>
-              {item.description}
-              <Button
-                color='secondary'
-                onClick={() => deleteItemsInRegistry(item)}
-              >
-                Delete
-              </Button>
-            </ul>
-          </div>
-        ))}
-      </div>
-      <div>
-        <ItemsToChoose
-          chosenItems={items}
-          setChosenItems={setItems}
-          setTimeNeeded={setTimeNeeded}
-          timeNeeded={timeNeeded}
-        />
-      </div>
-      <Button
-        size='small'
-        variant='contained'
-        color='primary'
-        onClick={handleSubmit}
-      >
-        Add item
-      </Button>
-      <div>
-        <h2>Remove items from my list</h2>
-        {requestList.map((item) => (
-          <Card className={classes.root} key={item.id}>
-            <CardContent>
-              <Typography variant='body2' component='p'>
-                <div key={item.id}>
-                  <ul>
-                    {item.description}
-                    <Button
-                      color='secondary'
-                      onClick={() => deleteItemsInRegistry(item)}
-                    >
-                      Delete
-                    </Button>
-                  </ul>
+    <div className='ma10 pa6 ph10 fl w-100'>
+      <center>
+        <h2 className='b i pb3'>Add items to my list</h2>
+        <Card className={classes.root} key={items}>
+          <CardContent>
+            <Typography variant='body2' component='p'>
+              <div>
+                <ItemsToChoose
+                  chosenItems={items}
+                  setChosenItems={setItems}
+                />
+                <Button
+                  size='small'
+                  variant='contained'
+                  color='primary'
+                  onClick={handleSubmit}
+                >
+                  Add item
+                </Button>
+              </div>
+            </Typography>
+          </CardContent>
+        </Card>
 
-                </div>
-              </Typography>
-            </CardContent>
-          </Card>
-        ))}
-      </div>
-
+        <div>
+          <h2 className='b i pb3 pt3'>Remove items from my list</h2>
+          {requestList.map((item) => (
+            <Card className={classes.root} key={item.id}>
+              <CardContent>
+                <Typography variant='body2' component='p'>
+                  <div className='f4 b pa1 mh2 ba b--light-blue b--solid br3 b' key={item.id}>
+                    <ul>
+                      {item.description}
+                      <Button
+                        color='secondary'
+                        onClick={() => deleteItemsInRegistry(item)}
+                      >
+                        Delete
+                      </Button>
+                    </ul>
+                  </div>
+                </Typography>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      </center>
     </div>
+
   )
 }
 
