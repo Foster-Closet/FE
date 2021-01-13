@@ -67,12 +67,12 @@ const Dashboard = ({ auth, handleUnauthorized }) => {
   }
 
   return (
-    <div className='ma10 pa2 ph10 ba br3 fl w-100 bg-washed-blue'>
+    <div className='ma10 pa2 ph10 fl w-100'>
       <center>
         <h1 className='flex justify-center mw6'>
           We are so glad you are here!
         </h1>
-        <h2 className='flex justify-center mw5 pa3'>Please create a request for any items that your foster child or kinship placement needs.
+        <h2 className='f4 flex justify-center mw8 pa3'>Please create a request for any items that your foster child or kinship placement needs.
         </h2>
         <Button variant='contained' color='primary' href='/create-request'>
           Create a Request
@@ -80,13 +80,14 @@ const Dashboard = ({ auth, handleUnauthorized }) => {
       </center>
       <center>
         <div className='center pa3 mr3 ma5 w-50'>
+          <h2 className='f4 b'>My Recent Requests</h2>
           {requestList.map((item) => (
             <Card className={classes.root} key={item.id}>
               <CardActionArea>
                 <CardContent>
                   <Typography variant='body2' component='p'>
                     <div
-                      className='flex pa1 mh2 ba b--gray b--solid br3'
+                      className=' f4 b flex pa1 mh2 ba b--light-blue b--solid br3'
                       key={item.id}
                     >
                       <ul>
@@ -100,24 +101,27 @@ const Dashboard = ({ auth, handleUnauthorized }) => {
                   </Typography>
                 </CardContent>
               </CardActionArea>
-              <CardActions>
-                <Button
-                  size='small'
-                  variant='contained'
-                  color='primary'
-                  href={`/request/${item.id}/update`}
-                >
-                  Update Request
-                </Button>
-                <Button
-                  size='small'
-                  variant='contained'
-                  color='secondary'
-                  onClick={() => deleteRegistry(item)}
-                >
-                  Delete Request
-                </Button>
-              </CardActions>
+              <center>
+                <CardActions>
+                  <Button
+                    size='small'
+                    variant='contained'
+                    color='primary'
+                    href={`/request/${item.id}/update`}
+                  >
+                    Update Request
+                  </Button>
+                  <Button
+                    size='small'
+                    variant='contained'
+                    color='secondary'
+                    onClick={() => deleteRegistry(item)}
+                  >
+                    Delete Request
+                  </Button>
+
+                </CardActions>
+              </center>
             </Card>
           ))}
         </div>

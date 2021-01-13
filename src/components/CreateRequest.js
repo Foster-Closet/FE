@@ -15,7 +15,7 @@ const CreateRequest = ({ auth, chosenItems }) => {
   const handleSubmit = () => {
     const newItems = items.map((item) => {
       const itemObj = {
-        description: item.value + '-' + item.details
+        description: item.value + ' ' + item.details
       }
       return itemObj
     })
@@ -54,28 +54,31 @@ const CreateRequest = ({ auth, chosenItems }) => {
   }
 
   return (
-    <div className='CreateRequest pa6'>
-      <div>
-        <Card className={classes.root}>
-          <CardContent>
-            <Typography variant='body2' component='p'>
-              <ItemsToChoose
-                chosenItems={items}
-                setChosenItems={setItems}
-              />
-            </Typography>
-          </CardContent>
-        </Card>
+    <center>
+      <div className='pa6 ph10 w-50'>
+        <h2>Start typing below. Feel free to add details</h2>
+        <div>
+          <Card className={classes.root}>
+            <CardContent>
+              <Typography variant='body2' component='p'>
+                <ItemsToChoose
+                  chosenItems={items}
+                  setChosenItems={setItems}
+                />
+              </Typography>
+            </CardContent>
+          </Card>
+        </div>
+        <Button
+          size='small'
+          variant='contained'
+          color='primary'
+          onClick={handleSubmit}
+        >
+          Submit Request
+        </Button>
       </div>
-      <Button
-        size='small'
-        variant='contained'
-        color='primary'
-        onClick={handleSubmit}
-      >
-        Submit Request
-      </Button>
-    </div>
+    </center>
   )
 }
 

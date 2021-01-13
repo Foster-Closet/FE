@@ -33,7 +33,7 @@ const Login = ({ auth, onLogin }) => {
   return (
     <div>
       <center>
-        <h3 className='pa1'>
+        <h3 className='f3 b pa1'>
           Log In or <Link to='/register'>Register</Link>
         </h3>
         <form onSubmit={handleSubmit}>

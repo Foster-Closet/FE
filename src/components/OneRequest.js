@@ -2,6 +2,10 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import { Redirect, useParams } from 'react-router-dom'
 import Button from '@material-ui/core/Button'
+import Card from '@material-ui/core/Card'
+import CardContent from '@material-ui/core/CardContent'
+import Typography from '@material-ui/core/Typography'
+import { makeStyles } from '@material-ui/core/styles'
 
 const OneRequest = ({ auth }) => {
   const { id } = useParams()
@@ -56,7 +60,25 @@ const OneRequest = ({ auth }) => {
         console.log(error)
       })
   }
+  const useStyles = makeStyles({
+    root: {
+      minWidth: 275,
+      marginBottom: 20
+    },
+    bullet: {
+      display: 'inline-block',
+      margin: '0 2px',
+      transform: 'scale(0.8)'
+    },
+    title: {
+      fontSize: 14
+    },
+    pos: {
+      marginBottom: 12
+    }
+  })
 
+  const classes = useStyles()
   if (!auth) {
     return <Redirect to='/login' />
   }
@@ -66,24 +88,34 @@ const OneRequest = ({ auth }) => {
   }
 
   return (
-    <div>
-      <h2>Check Items You Can Provide</h2>
-      <div>
-        {requestList.map((item) => (
-          <div key={item.id}>
-            {item.description}
-            <ul>
-              <input
-                type='checkbox'
-                onClick={(event) => chooseItems(event, item.description)}
-              />
-            </ul>
-          </div>
-        ))}
-      </div>
-      <Button color='primary' onClick={handleSubmit}>
-        Submit Donations
-      </Button>
+    <div className='ma10 pa2 ph10 fl w-100'>
+      <center>
+        <h2 className='pa2 f4 b'>Check Items You Can Provide</h2>
+        <div className='tl mw6 pa3'>
+          <Card className={classes.root}>
+            <CardContent>
+              <Typography variant='body2' component='p'>
+                {requestList.map((item) => (
+                  <div className='f4' key={item.id}>
+                    <input
+                      type='checkbox'
+                      onClick={(event) => chooseItems(event, item.description)}
+                    />{' '}
+                    {item.description}
+                  </div>
+                ))}
+              </Typography>
+            </CardContent>
+          </Card>
+        </div>
+        <Button
+          variant='contained'
+          color='primary'
+          onClick={handleSubmit}
+        >
+          Able to Donate
+        </Button>
+      </center>
     </div>
   )
 }
